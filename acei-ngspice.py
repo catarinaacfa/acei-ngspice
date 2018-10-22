@@ -79,22 +79,15 @@ def removePreviousFiles():
 	if len(sys.argv) == 3:
 		subprocess.call(['rm','-f', sys.argv[2]])
 	else:
-		subprocess.call(['rm','-f',ACEI_OUT])
+		subprocess.call(['rm','-f', ACEI_OUT])
 	subprocess.call(['rm','-f',AC_Measures])
 	subprocess.call(['rm','-f',OP_Measures])
 		
 def main():
 
 	removePreviousFiles()
-
 	runSimulator(sys.argv[1])
-	measuresAC = parseACMeasures()
-	#print(measuresAC)
-
-	measuresOP = parseOPMeasures()
-	#print(measuresOP)
-
-	getOutputFile(measuresAC, measuresOP)
+	getOutputFile(parseACMeasures(), parseOPMeasures())	
 
 if __name__ == '__main__':
 	if len(sys.argv) <= 1:
