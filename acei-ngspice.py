@@ -9,8 +9,11 @@ AC_Measures = 'AC_Measures.txt'
 OP_Measures = 'OP_Measures.txt'
 
 def runSimulator(netlist):
-	#PUT TIMEOUT HERE
-	subprocess.run(["ngspice","-b", netlist, "-o", AC_Measures, "-r", OP_Measures], timeout=)
+	#runs ngspice and gives a timeout of 15 seconds
+	try:
+		subprocess.run(["ngspice","-b", netlist, "-o", AC_Measures, "-r", OP_Measures], timeout=15)
+	except subprocess.TimeoutExpired:
+		sys.exit("Simulation ran too long!")
 
 def parseACMeasures():
 	measures = {}
@@ -67,9 +70,7 @@ def getOutputFile(measuresAC, measuresOP):
 	except IOError:
 		print("Error opening output file!")
 
-		
-def main():
-
+def removePreviousFiles():
 	#Remove old output files if exist (NGSpice and parser outputs)
 	if len(sys.argv) == 3:
 		subprocess.call(['rm','-f', sys.argv[2]])
@@ -77,13 +78,17 @@ def main():
 		subprocess.call(['rm','-f',ACEI_OUT])
 	subprocess.call(['rm','-f',AC_Measures])
 	subprocess.call(['rm','-f',OP_Measures])
+		
+def main():
+
+	removePreviousFiles()
 
 	runSimulator(sys.argv[1])
 	measuresAC = parseACMeasures()
-	print(measuresAC)
+	#print(measuresAC)
 
 	measuresOP = parseOPMeasures()
-	print(measuresOP)
+	#print(measuresOP)
 
 	getOutputFile(measuresAC, measuresOP)
 
