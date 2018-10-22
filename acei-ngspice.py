@@ -60,8 +60,12 @@ def writeValues(measures, outFile):
 		outFile.write(value + '\t')
 
 def getOutputFile(measuresAC, measuresOP):
+	if len(sys.argv) == 3:
+		filename = sys.argv[2]
+	else:
+		filename = ACEI_OUT
 	try:
-		with open(ACEI_OUT, 'w') as outFile:
+		with open(filename, 'w') as outFile:
 			writeKeys(measuresAC, outFile)
 			writeKeys(measuresOP, outFile)
 			outFile.write('\n')
@@ -94,7 +98,7 @@ def main():
 
 if __name__ == '__main__':
 	if len(sys.argv) <= 1:
-		pass
+		sys.exit("No netlist was given!")
 	else:
 		main()
 
