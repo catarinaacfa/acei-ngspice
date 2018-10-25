@@ -2,26 +2,40 @@
 
 import sys
 import subprocess
+import glob
+import threading
+import os
 
 #Output file name
 ACEI_OUT = 'ACEI_OUT.dat'
-AC_Measures = 'AC_Measures_'
-OP_Measures = 'OP_Measures_'
+AC_Measures = 'AC_Measures'
+OP_Measures = 'OP_Measures'
 Extension = '.txt'
 
-def runSimulator(netlist, corner):
+def runTypical(netlist):
+	#runs ngspice and gives a timeout of 15 seconds
+	try:
+		subprocess.run(["ngspice", "-b", netlist, "-o", AC_Measures + Extension, "-r", OP_Measures + Extension], timeout=15)
+	except subprocess.TimeoutExpired:
+		sys.exit("Simulation ran too long!")
+
+def runCorners(netlist, corner):
 	#runs ngspice and gives a timeout of 15 seconds
 	try:
 		outputAC = AC_Measures + corner + Extension
 		outputOP = OP_Measures + corner + Extension
-		subprocess.run(["ngspice","-b", netlist, "-o", outputAC, "-r", outputOP], timeout=15)
+		subprocess.run(["ngspice", "-b", netlist, "-o", outputAC, "-r", outputOP], timeout=15)
 	except subprocess.TimeoutExpired:
 		sys.exit("Simulation ran too long!")
 
-def parseACMeasures():
+def parseACMeasures(corner):
 	measures = {}
+	if corner != None:
+		filename = AC_Measures + corner + Extension
+	else:
+		filename = AC_Measures + Extension
 	try:
-		with open(AC_Measures, 'r') as file:
+		with open(filename, 'r') as file:
 			for line in file:
 				content = line.split()
 				if len(content) == 3 and content[1] == '=':
@@ -31,13 +45,17 @@ def parseACMeasures():
 
 	return measures
 
-def parseOPMeasures():
+def parseOPMeasures(corner):
 	measures = {}
 	listOfMeas = []
 	index = 0
 	valuesFound = False
+	if corner != None:
+		filename = OP_Measures + corner + Extension
+	else:
+		filename = OP_Measures + Extension
 	try:
-		with open(OP_Measures, 'r') as file:
+		with open(filename, 'r') as file:
 			for line in file:
 				if '@' in line:
 					listOfMeas.append(line.split('\t')[2].split('@')[1].split(')')[0].replace('[', '_').replace(']', '').replace('.', '_'))
@@ -67,15 +85,18 @@ def getOutputFile(measuresAC, measuresOP):
 		filename = sys.argv[2]
 	else:
 		filename = ACEI_OUT
+
 	try:
 		with open(filename, 'w') as outFile:
-			outFile.write('Cornr#\t')
-			writeKeys(measuresAC, outFile)
-			writeKeys(measuresOP, outFile)
+			for i in range(len(measuresAC)):
+				outFile.write('Cornr#\t')
+				writeKeys(measuresAC[i], outFile)
+				writeKeys(measuresOP[i], outFile)
 			outFile.write('\n')
 			outFile.write('0 ')
-			writeValues(measuresAC, outFile)
-			writeValues(measuresOP, outFile)
+			for i in range(len(measuresAC)):
+				writeValues(measuresAC[i], outFile)
+				writeValues(measuresOP[i], outFile)
 	except IOError:
 		print("Error opening output file!")
 
@@ -85,15 +106,45 @@ def removePreviousFiles():
 		subprocess.call(['rm','-f', sys.argv[2]])
 	else:
 		subprocess.call(['rm','-f', ACEI_OUT])
-	subprocess.call(['rm','-f', AC_Measures])
-	subprocess.call(['rm','-f', OP_Measures])
-		
+	for f in glob.glob('*_Measures*'):
+		os.remove(f)
+
+def getNetlists(netlist):
+	return glob.glob(netlist + '*')
+
+def simulation(netlist, netlistTT, index, measuresAC, measuresOP):
+	if netlist != netlistTT + '.cir':
+		corner = netlist.split(netlistTT + '_')[1].split('.cir')[0]
+		runCorners(netlist, corner)
+	else:
+		corner = None
+		runTypical(netlist)
+
+	measuresAC[index] = parseACMeasures(corner)
+	measuresOP[index] = parseOPMeasures(corner)
+
 def main():
 
+	netlistTT = sys.argv[1].split('.')[0]
+	threads = []
 	removePreviousFiles()
+	
+	netlists = getNetlists(netlistTT)
 
-	runSimulator(sys.argv[1])
-	getOutputFile(parseACMeasures(), parseOPMeasures())	
+	#Dictionaries that will hold AC and OP measures of all corners
+	measuresAC = [{} for n in netlists]
+	measuresOP = [{} for n in netlists]
+
+	for i in range(len(netlists)):
+		t = threading.Thread(target=simulation, args=(netlists[i], netlistTT, i, measuresAC, measuresOP))
+		threads.append(t)
+		t.start()
+
+	#Wait for threads to finish processing files
+	for t in threads:
+		t.join()
+
+	getOutputFile(measuresAC, measuresOP)
 
 if __name__ == '__main__':
 	if len(sys.argv) <= 1:

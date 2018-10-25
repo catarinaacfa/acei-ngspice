@@ -1,0 +1,35 @@
+
+Circuit: ** generated for: eldo
+
+Warning: Model issue on line 2 :
+  .model n_hg_33_l130e nmos paramchk=1.0000e+00 level=8 version=3.2400e+00 ...
+unrecognized parameter (optacm) - ignored
+Warning: Model issue on line 7 :
+  .model p_hg_33_l130e pmos paramchk=1.0000e+00 level=8 version=3.2400e+00 ...
+unrecognized parameter (optacm) - ignored
+Doing analysis at TEMP = 25.000000 and TNOM = 27.000000
+
+
+
+No. of Data Rows : 2001
+gdc                 =  5.078321e+01
+gbw                 =  7.931982e+07
+pm                  =  6.174107e+01
+Doing analysis at TEMP = 25.000000 and TNOM = 27.000000
+
+
+
+No. of Data Rows : 1
+Doing analysis at TEMP = 25.000000 and TNOM = 27.000000
+
+No. of Data Columns : 61  
+
+No. of Data Rows : 1
+OP information in rawfile.
+CPU time since last call: 0.093 seconds.
+
+Total CPU time: 0.094 seconds.
+
+Current dynamic memory usage = 0 bytes,
+Dynamic memory limit = 8796093018017.726562 MB.
+

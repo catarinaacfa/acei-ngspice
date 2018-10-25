@@ -11,7 +11,7 @@ OP_Measures = 'OP_Measures.txt'
 def runSimulator(netlist):
 	#runs ngspice and gives a timeout of 15 seconds
 	try:
-		subprocess.run(["ngspice","-b", netlist, "-o", AC_Measures, "-r", OP_Measures], timeout=15)
+		subprocess.run(["ngspice", "-b", netlist, "-o", AC_Measures, "-r", OP_Measures], timeout=15)
 	except subprocess.TimeoutExpired:
 		sys.exit("Simulation ran too long!")
 
