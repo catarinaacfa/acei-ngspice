@@ -5,13 +5,16 @@ import subprocess
 
 #Output file name
 ACEI_OUT = 'ACEI_OUT.dat'
-AC_Measures = 'AC_Measures.txt'
-OP_Measures = 'OP_Measures.txt'
+AC_Measures = 'AC_Measures_'
+OP_Measures = 'OP_Measures_'
+Extension = '.txt'
 
-def runSimulator(netlist):
+def runSimulator(netlist, corner):
 	#runs ngspice and gives a timeout of 15 seconds
 	try:
-		subprocess.run(["ngspice","-b", netlist, "-o", AC_Measures, "-r", OP_Measures], timeout=15)
+		outputAC = AC_Measures + corner + Extension
+		outputOP = OP_Measures + corner + Extension
+		subprocess.run(["ngspice","-b", netlist, "-o", outputAC, "-r", outputOP], timeout=15)
 	except subprocess.TimeoutExpired:
 		sys.exit("Simulation ran too long!")
 
@@ -37,7 +40,7 @@ def parseOPMeasures():
 		with open(OP_Measures, 'r') as file:
 			for line in file:
 				if '@' in line:
-					listOfMeas.append(line.split('\t')[2].split('@')[1].split(')')[0].replace('[', '_').replace(']', ''))
+					listOfMeas.append(line.split('\t')[2].split('@')[1].split(')')[0].replace('[', '_').replace(']', '').replace('.', '_'))
 				elif valuesFound and index <= numberVariables:
 					if index == 0:
 						measures[listOfMeas[index]] = line.split()[1]
@@ -66,9 +69,11 @@ def getOutputFile(measuresAC, measuresOP):
 		filename = ACEI_OUT
 	try:
 		with open(filename, 'w') as outFile:
+			outFile.write('Cornr#\t')
 			writeKeys(measuresAC, outFile)
 			writeKeys(measuresOP, outFile)
 			outFile.write('\n')
+			outFile.write('0 ')
 			writeValues(measuresAC, outFile)
 			writeValues(measuresOP, outFile)
 	except IOError:
@@ -80,12 +85,13 @@ def removePreviousFiles():
 		subprocess.call(['rm','-f', sys.argv[2]])
 	else:
 		subprocess.call(['rm','-f', ACEI_OUT])
-	subprocess.call(['rm','-f',AC_Measures])
-	subprocess.call(['rm','-f',OP_Measures])
+	subprocess.call(['rm','-f', AC_Measures])
+	subprocess.call(['rm','-f', OP_Measures])
 		
 def main():
 
 	removePreviousFiles()
+
 	runSimulator(sys.argv[1])
 	getOutputFile(parseACMeasures(), parseOPMeasures())	
 
