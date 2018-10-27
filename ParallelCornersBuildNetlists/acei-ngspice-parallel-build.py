@@ -5,6 +5,8 @@ import subprocess
 import glob
 import threading
 import os
+import shutil
+import time
 
 #Output file name
 ACEI_OUT = 'ACEI_OUT.dat'
@@ -12,14 +14,11 @@ AC_Measures = 'AC_Measures'
 OP_Measures = 'OP_Measures'
 Extension = '.txt'
 
-def runTypical(netlist):
-	#runs ngspice and gives a timeout of 15 seconds
-	try:
-		subprocess.run(["ngspice", "-b", netlist, "-o", AC_Measures + Extension, "-r", OP_Measures + Extension], timeout=15)
-	except subprocess.TimeoutExpired:
-		sys.exit("Simulation ran too long!")
+#Corners file
+Corners = 'corners.inc'
 
-def runCorners(netlist, corner):
+def runSimulation(netlist, corner):
+	currDirectory = os.getcwd()
 	#runs ngspice and gives a timeout of 15 seconds
 	try:
 		outputAC = AC_Measures + corner + Extension
@@ -30,10 +29,8 @@ def runCorners(netlist, corner):
 
 def parseACMeasures(corner):
 	measures = {}
-	if corner != None:
-		filename = AC_Measures + corner + Extension
-	else:
-		filename = AC_Measures + Extension
+	filename = AC_Measures + corner + Extension
+
 	try:
 		with open(filename, 'r') as file:
 			for line in file:
@@ -50,10 +47,8 @@ def parseOPMeasures(corner):
 	listOfMeas = []
 	index = 0
 	valuesFound = False
-	if corner != None:
-		filename = OP_Measures + corner + Extension
-	else:
-		filename = OP_Measures + Extension
+	filename = OP_Measures + corner + Extension
+	
 	try:
 		with open(filename, 'r') as file:
 			for line in file:
@@ -106,37 +101,74 @@ def removePreviousFiles():
 		subprocess.call(['rm','-f', sys.argv[2]])
 	else:
 		subprocess.call(['rm','-f', ACEI_OUT])
+	removeOutputFiles()
+	removeNetlists()
+
+def removeOutputFiles():
 	for f in glob.glob('*_Measures*'):
 		os.remove(f)
 
-def getNetlists(netlist):
-	return glob.glob(netlist + '*')
+def removeNetlists():
+	for f in glob.glob(sys.argv[1].split('.')[0] + '_*'):
+		os.remove(f)
 
-def simulation(netlist, netlistTT, index, measuresAC, measuresOP):
-	if netlist != netlistTT + '.cir':
-		corner = netlist.split(netlistTT + '_')[1].split('.cir')[0]
-		runCorners(netlist, corner)
-	else:
-		corner = None
-		runTypical(netlist)
+def buildNetlistsWithCorners(netlists, corners):
+	currDirectory = os.getcwd()
+	try:
+		with open(Corners, 'r') as file:
+			for line in file:
+				if '.lib' in line:
+					corner = line.split()[2]
+					corners.append(corner)
+					netlistName = copyNetlist(currDirectory, corner)
+					netlists.append(netlistName)
+					changeLibrary(netlistName, line, corner)
+	except IOError:
+		print("Cannot find corners file!")
 
+	return netlists, corners
+
+def copyNetlist(folder, corner):
+	netlist, ext = sys.argv[1].split('.')
+	netlistName = os.path.join(folder, netlist + '_' + corner + '.' + ext)
+	shutil.copy(os.path.join(folder, sys.argv[1]), netlistName)
+	return netlistName
+
+def changeLibrary(netlist, library, corner):
+	lib = glob.glob('*.lib')[0]
+	try:
+		with open(netlist, 'r') as file:
+			content = file.read().replace('.INC "' + lib + '"', library)
+		with open(netlist, 'w') as file: 
+			file.write(content)
+	except IOError:
+		print('Error changing library!')
+		
+def simulation(corner, netlist, index, measuresAC, measuresOP):
+	runSimulation(netlist, corner)
 	measuresAC[index] = parseACMeasures(corner)
 	measuresOP[index] = parseOPMeasures(corner)
 
 def main():
 
-	netlistTT = sys.argv[1].split('.')[0]
+	start = time.time()
+	netlists = []
+	corners = []
 	threads = []
 	removePreviousFiles()
 	
-	netlists = getNetlists(netlistTT)
+	netlists.append(sys.argv[1])
+	corners.append('TT')
+
+	netlists, corners = buildNetlistsWithCorners(netlists, corners)
 
 	#Dictionaries that will hold AC and OP measures of all corners
 	measuresAC = [{} for n in netlists]
 	measuresOP = [{} for n in netlists]
 
+	#Parallel
 	for i in range(len(netlists)):
-		t = threading.Thread(target=simulation, args=(netlists[i], netlistTT, i, measuresAC, measuresOP))
+		t = threading.Thread(target=simulation, args=(corners[i], netlists[i], i, measuresAC, measuresOP))
 		threads.append(t)
 		t.start()
 
@@ -144,7 +176,15 @@ def main():
 	for t in threads:
 		t.join()
 
+	#Not Parallel
+	"""for i in range(len(netlists)):
+		simulation(corners[i], netlists[i], i, measuresAC, measuresOP)"""
+
 	getOutputFile(measuresAC, measuresOP)
+	removeOutputFiles()
+	removeNetlists()
+
+	print('Time: ', time.time() - start)
 
 if __name__ == '__main__':
 	if len(sys.argv) <= 1:

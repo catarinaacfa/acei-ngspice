@@ -8,8 +8,7 @@
 .OPTION TUNING=FAST
 .OPTION AEX
 
-*.INC "umc130.lib"
-.lib '/Users/Catarina/Desktop/Tese/Libraries/L130E_HGIO_RVT33_V131/L130E_HG_RVT33_V131.lib.eldo' FNSP
+.INC "umc130.lib"
 
 .GLOBAL
 .PARAM vdd=3.3 vcm=1.65 c1=0.000000000006

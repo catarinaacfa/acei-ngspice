@@ -9,29 +9,29 @@
 .OPTION AEX
 
 *.INC "umc130.lib"
-.lib '/Users/Catarina/Desktop/Tese/Libraries/L130E_HGIO_RVT33_V131/L130E_HG_RVT33_V131.lib.eldo' SNFP
+.lib '/Users/Catarina/Desktop/Tese/Libraries/L130E_HGIO_RVT33_V131/L130E_HG_RVT33_V131.lib.eldo' FNSP
 
 .GLOBAL
 .PARAM vdd=3.3 vcm=1.65 c1=0.000000000006
 
 .PARAM
-+_l0=4.9000e-07
++_l0=4.8000e-07
 +_l1=3.0000e-07
 +_l10=9.4000e-07
-+_l4=6.7000e-07
-+_l6=7.5000e-07
++_l4=5.7000e-07
++_l6=5.9000e-07
 +_l8=9.4000e-07
 +_nf0=3.0000e+00
 +_nf1=3.0000e+00
 +_nf10=3.0000e+00
-+_nf4=8.0000e+00
-+_nf6=7.0000e+00
-+_nf8=5.0000e+00
-+_w0=2.6000e-05
-+_w1=1.7000e-06
-+_w10=1.6000e-06
-+_w4=1.5100e-05
-+_w6=7.1200e-05
++_nf4=3.0000e+00
++_nf6=3.0000e+00
++_nf8=1.0000e+00
++_w0=3.3700e-05
++_w1=2.4000e-06
++_w10=4.7000e-06
++_w4=8.5000e-06
++_w6=4.8100e-05
 +_w8=1.0000e-06
 
 
