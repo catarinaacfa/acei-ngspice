@@ -155,7 +155,7 @@ def main():
 	netlists = []
 	corners = []
 	threads = []
-	removePreviousFiles()
+	#removePreviousFiles()
 	
 	netlists.append(sys.argv[1])
 	corners.append('TT')
@@ -181,8 +181,8 @@ def main():
 		simulation(corners[i], netlists[i], i, measuresAC, measuresOP)"""
 
 	getOutputFile(measuresAC, measuresOP)
-	removeOutputFiles()
-	removeNetlists()
+	#removeOutputFiles()
+	#removeNetlists()
 
 	print('Time: ', time.time() - start)
 

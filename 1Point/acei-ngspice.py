@@ -87,7 +87,7 @@ def removePreviousFiles():
 		
 def main():
 
-	removePreviousFiles()
+	#removePreviousFiles()
 	runSimulator(sys.argv[1])
 	getOutputFile(parseACMeasures(), parseOPMeasures())	
 

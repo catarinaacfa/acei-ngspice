@@ -133,7 +133,7 @@ def main():
 	start = time.time()
 	netlistTT = sys.argv[1].split('.')[0]
 	threads = []
-	removePreviousFiles()
+	#removePreviousFiles()
 	
 	netlists = getNetlists(netlistTT)
 
@@ -156,7 +156,7 @@ def main():
 		simulation(netlists[i], netlistTT, i, measuresAC, measuresOP)"""
 
 	getOutputFile(measuresAC, measuresOP)
-	removeOutputFiles()
+	#removeOutputFiles()
 
 	print('Time: ', time.time() - start)
 
