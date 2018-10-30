@@ -37,7 +37,7 @@ def parseOPMeasures():
 		with open(OP_Measures, 'r') as file:
 			for line in file:
 				if '@' in line:
-					listOfMeas.append(line.split('\t')[2].split('@')[1].split(')')[0].replace('[', '_').replace(']', '').replace('.', '_s'))
+					listOfMeas.append(line.split('\t')[2].split('@')[1].split(')')[0].replace('[', '_').replace(']', '').replace('.', '_'))
 				elif valuesFound and index <= numberVariables:
 					if index == 0:
 						measures[listOfMeas[index]] = line.split()[1]
