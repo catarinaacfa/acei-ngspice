@@ -7,6 +7,7 @@ import threading
 import os
 import shutil
 import time
+import queue
 
 #Output file name
 ACEI_OUT = 'ACEI_OUT.dat'
@@ -112,7 +113,7 @@ def removeNetlists():
 	for f in glob.glob(sys.argv[1].split('.')[0] + '_*'):
 		os.remove(f)
 
-def buildNetlistsWithCorners(sim):
+def buildNetlistsWithCorners(q):
 	index = 1
 	try:
 		with open(Corners, 'r') as file:
@@ -121,11 +122,10 @@ def buildNetlistsWithCorners(sim):
 					corner = line.split()[2]
 					netlistName = copyNetlist(corner)
 					changeLibrary(netlistName, line, corner)
-					sim.append((index, netlistName, corner))
+					q.put((index, netlistName, corner))
 					index += 1
 	except IOError:
-		print("Cannot find corners file!")
-
+		print("Cannot find corners file, only the given netlist will be simulated!")
 
 def copyNetlist(corner):
 	netlist, ext = sys.argv[1].split('.')
@@ -148,37 +148,52 @@ def simulation(simObj, measuresAC, measuresOP):
 	measuresAC[simObj[0]] = parseACMeasures(simObj[2])
 	measuresOP[simObj[0]] = parseOPMeasures(simObj[2])
 
+def processNetlists(q, measuresAC, measuresOP):
+	while not q.empty():
+		simObj = q.get()
+		simulation(simObj, measuresAC, measuresOP)
+		q.task_done()
+
 def main():
 
 	start = time.time()
-	netlists = []
-	corners = []
-	threads = []
+
+	#Queue to hold the netlists
+	q = queue.Queue(maxsize=0)
+
+	#Get the number of cores available
+	numThreads = os.cpu_count()-1
+
 	removePreviousFiles()
 	
-	sim = [(0, sys.argv[1], 'TT')]
-	#netlists.append(sys.argv[1])
-	#corners.append('TT')
+	q.put((0, sys.argv[1], 'TT'))
 
-	buildNetlistsWithCorners(sim)
+	buildNetlistsWithCorners(q)
+	netlistsNr = q.qsize()
 
 	#Dictionaries that will hold AC and OP measures of all corners
-	measuresAC = [{} for n in sim]
-	measuresOP = [{} for n in sim]
+	measuresAC = [{} for n in range(netlistsNr)]
+	measuresOP = [{} for n in range(netlistsNr)]
 
-	#Parallel
-	for i in range(len(sim)):
-		t = threading.Thread(target=simulation, args=(sim[i], measuresAC, measuresOP))
-		threads.append(t)
-		t.start()
+	if netlistsNr > 1:
+		if netlistsNr < numThreads:
+			numThreads = netlistsNr
 
-	#Wait for threads to finish processing files
-	for t in threads:
-		t.join()
+		#Parallel
+		for i in range(numThreads):
+			t = threading.Thread(target=processNetlists, args=(q, measuresAC, measuresOP))
+			t.start()
+
+		q.join()
+	else:
+		simObj = q.get()
+		simulation(simObj, measuresAC, measuresOP)
+
 
 	#Not Parallel
-	"""for i in range(len(netlists)):
-		simulation(corners[i], netlists[i], i, measuresAC, measuresOP)"""
+	"""for i in range(netlistsNr):
+		simObj = q.get()
+		simulation(simObj, measuresAC, measuresOP)"""
 
 	getOutputFile(measuresAC, measuresOP)
 	#removeOutputFiles()
