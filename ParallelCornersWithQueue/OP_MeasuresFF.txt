@@ -1,0 +1,130 @@
+Title: ** generated for: eldo
+Date: Tue Nov  6 23:53:30  2018
+Plotname: Operating Point
+Flags: real
+No. Variables: 61
+No. Points: 1       
+Variables:
+	0	v(@m.xinova.mnm0[vgs])	voltage
+	1	v(@m.xinova.mnm0[vth])	voltage
+	2	v(@m.xinova.mnm0[vds])	voltage
+	3	v(@m.xinova.mnm0[vdsat])	voltage
+	4	i(@m.xinova.mnm0[id])	current
+	5	v(@m.xinova.mnm1[vgs])	voltage
+	6	v(@m.xinova.mnm1[vth])	voltage
+	7	v(@m.xinova.mnm1[vds])	voltage
+	8	v(@m.xinova.mnm1[vdsat])	voltage
+	9	i(@m.xinova.mnm1[id])	current
+	10	v(@m.xinova.mnm2[vgs])	voltage
+	11	v(@m.xinova.mnm2[vth])	voltage
+	12	v(@m.xinova.mnm2[vds])	voltage
+	13	v(@m.xinova.mnm2[vdsat])	voltage
+	14	i(@m.xinova.mnm2[id])	current
+	15	v(@m.xinova.mnm3[vgs])	voltage
+	16	v(@m.xinova.mnm3[vth])	voltage
+	17	v(@m.xinova.mnm3[vds])	voltage
+	18	v(@m.xinova.mnm3[vdsat])	voltage
+	19	i(@m.xinova.mnm3[id])	current
+	20	v(@m.xinova.mnm4[vgs])	voltage
+	21	v(@m.xinova.mnm4[vth])	voltage
+	22	v(@m.xinova.mnm4[vds])	voltage
+	23	v(@m.xinova.mnm4[vdsat])	voltage
+	24	i(@m.xinova.mnm4[id])	current
+	25	v(@m.xinova.mnm5[vgs])	voltage
+	26	v(@m.xinova.mnm5[vth])	voltage
+	27	v(@m.xinova.mnm5[vds])	voltage
+	28	v(@m.xinova.mnm5[vdsat])	voltage
+	29	i(@m.xinova.mnm5[id])	current
+	30	v(@m.xinova.mnm6[vgs])	voltage
+	31	v(@m.xinova.mnm6[vth])	voltage
+	32	v(@m.xinova.mnm6[vds])	voltage
+	33	v(@m.xinova.mnm6[vdsat])	voltage
+	34	i(@m.xinova.mnm6[id])	current
+	35	v(@m.xinova.mnm7[vgs])	voltage
+	36	v(@m.xinova.mnm7[vth])	voltage
+	37	v(@m.xinova.mnm7[vds])	voltage
+	38	v(@m.xinova.mnm7[vdsat])	voltage
+	39	i(@m.xinova.mnm7[id])	current
+	40	v(@m.xinova.mnm8[vgs])	voltage
+	41	v(@m.xinova.mnm8[vth])	voltage
+	42	v(@m.xinova.mnm8[vds])	voltage
+	43	v(@m.xinova.mnm8[vdsat])	voltage
+	44	i(@m.xinova.mnm8[id])	current
+	45	v(@m.xinova.mnm9[vgs])	voltage
+	46	v(@m.xinova.mnm9[vth])	voltage
+	47	v(@m.xinova.mnm9[vds])	voltage
+	48	v(@m.xinova.mnm9[vdsat])	voltage
+	49	i(@m.xinova.mnm9[id])	current
+	50	v(@m.xinova.mnm10[vgs])	voltage
+	51	v(@m.xinova.mnm10[vth])	voltage
+	52	v(@m.xinova.mnm10[vds])	voltage
+	53	v(@m.xinova.mnm10[vdsat])	voltage
+	54	i(@m.xinova.mnm10[id])	current
+	55	v(@m.xinova.mnm11[vgs])	voltage
+	56	v(@m.xinova.mnm11[vth])	voltage
+	57	v(@m.xinova.mnm11[vds])	voltage
+	58	v(@m.xinova.mnm11[vdsat])	voltage
+	59	i(@m.xinova.mnm11[id])	current
+	60	i(@vdc[i])	current
+Values:
+0		8.485378943225279e-01
+	5.005833978880296e-01
+	1.519623153794325e+00
+	2.769654347737119e-01
+	1.242629470704981e-04
+	8.485300024387805e-01
+	4.118554769393907e-01
+	8.485163466641050e-01
+	3.051779542220941e-01
+	1.924943107593919e-05
+	8.485300023956657e-01
+	4.118554769397071e-01
+	8.485163466209928e-01
+	3.051779541952892e-01
+	1.924943107239944e-05
+	8.485378942794108e-01
+	5.005833978790672e-01
+	1.519623155809492e+00
+	2.769654347499288e-01
+	1.242629470604371e-04
+	4.934101799714257e-01
+	4.271983937784810e-01
+	1.294864984354681e+00
+	1.001008419390889e-01
+	1.924942325555485e-05
+	4.934101799741903e-01
+	4.271983937784594e-01
+	1.294864984400562e+00
+	1.001008419406936e-01
+	1.924942325641942e-05
+	4.934104038969176e-01
+	4.318483023249881e-01
+	2.143409090415123e+00
+	9.789800171268807e-02
+	7.754551053138502e-05
+	4.934104038941527e-01
+	4.318483023249887e-01
+	2.143409090412358e+00
+	9.789800171110970e-02
+	7.754551052800915e-05
+	1.649883265286228e+00
+	3.504055941331218e-01
+	1.156354813187024e+00
+	8.827589303231794e-01
+	9.679495337689353e-05
+	1.649883265286228e+00
+	3.504055941331217e-01
+	1.156354813189788e+00
+	8.827589303231811e-01
+	9.679495337691413e-05
+	1.520849095714538e+00
+	3.830249812129361e-01
+	1.780177992027923e+00
+	7.780256529062399e-01
+	1.242630557840692e-04
+	1.520849095714542e+00
+	3.830249812130106e-01
+	1.780177990012762e+00
+	7.780256529061979e-01
+	1.242630557795429e-04
+	-5.421158265300644e-04
