@@ -89,10 +89,11 @@ def getOutputFile(measuresAC, measuresOP):
 				writeKeys(measuresAC[i], outFile)
 				writeKeys(measuresOP[i], outFile)
 			outFile.write('\n')
-			outFile.write('0 ')
 			for i in range(len(measuresAC)):
+				outFile.write(str(i) + ' ')
 				writeValues(measuresAC[i], outFile)
 				writeValues(measuresOP[i], outFile)
+			outFile.write('\n')
 	except IOError:
 		print("Error opening output file!")
 
