@@ -11,25 +11,25 @@ import queue
 
 #Output file name
 ACEI_OUT = 'ACEI_OUT.dat'
-AC_Measures = 'AC_Measures'
-OP_Measures = 'OP_Measures'
+MeasuresOutput = 'Measures'
 Extension = '.txt'
 
 #Corners file
 Corners = 'corners.inc'
 
+# Runs each netlist in interactive mode and saves the standard output to a file
 def runSimulation(netlist, corner):
 	#runs ngspice and gives a timeout of 15 seconds
 	try:
-		outputAC = AC_Measures + corner + Extension
-		outputOP = OP_Measures + corner + Extension
-		subprocess.run(["ngspice", "-b", netlist, "-o", outputAC, "-r", outputOP], timeout=15)
+		output = MeasuresOutput + corner + Extension
+		with open(output, 'w') as f:
+			subprocess.run(['ngspice', netlist], stdout=f, timeout=15)
 	except subprocess.TimeoutExpired:
 		sys.exit("Simulation ran too long!")
 
-def parseACMeasures(corner):
+def parseMeasures(corner):
 	measures = {}
-	filename = AC_Measures + corner + Extension
+	filename = MeasuresOutput + corner + Extension
 
 	try:
 		with open(filename, 'r') as file:
@@ -38,33 +38,8 @@ def parseACMeasures(corner):
 				if len(content) == 3 and content[1] == '=':
 					measures[content[0]] = content[2]
 	except:
-		print("File with AC measures not found!")
+		print("Output file not found!")
 
-	return measures
-
-def parseOPMeasures(corner):
-	measures = {}
-	listOfMeas = []
-	index = 0
-	valuesFound = False
-	filename = OP_Measures + corner + Extension
-	
-	try:
-		with open(filename, 'r') as file:
-			for line in file:
-				if '@' in line:
-					listOfMeas.append(line.split('\t')[2].split('@')[1].split(')')[0].replace('[', '_').replace(']', '').replace('.', '_'))
-				elif valuesFound and index <= numberVariables:
-					if index == 0:
-						measures[listOfMeas[index]] = line.split()[1]
-					else:
-						measures[listOfMeas[index]] = line.split()[0]
-					index += 1
-				elif 'Values:' in line:
-					valuesFound = True
-					numberVariables = len(listOfMeas) - 1
-	except IOError:
-		print("File with OP measures not found!")
 	return measures
 
 def writeKeys(measures, outFile):
@@ -75,7 +50,7 @@ def writeValues(measures, outFile):
 	for value in measures.values():
 		outFile.write(value + '\t')
 
-def getOutputFile(measuresAC, measuresOP):
+def getOutputFile(measures):
 	if len(sys.argv) == 3:
 		filename = sys.argv[2]
 	else:
@@ -83,15 +58,13 @@ def getOutputFile(measuresAC, measuresOP):
 
 	try:
 		with open(filename, 'w') as outFile:
-			for i in range(len(measuresAC)):
+			for i in range(len(measures)):
 				outFile.write('Cornr#\t')
-				writeKeys(measuresAC[i], outFile)
-				writeKeys(measuresOP[i], outFile)
+				writeKeys(measures[i], outFile)
 			outFile.write('\n')
-			for i in range(len(measuresAC)):
+			for i in range(len(measures)):
 				outFile.write(str(i) + ' ')
-				writeValues(measuresAC[i], outFile)
-				writeValues(measuresOP[i], outFile)
+				writeValues(measures[i], outFile)
 			outFile.write('\n')
 	except IOError:
 		print("Error opening output file!")
@@ -106,7 +79,7 @@ def removePreviousFiles():
 	removeNetlists()
 
 def removeOutputFiles():
-	for f in glob.glob('*_Measures*'):
+	for f in glob.glob('*Measures*'):
 		os.remove(f)
 
 def removeNetlists():
@@ -143,15 +116,14 @@ def changeLibrary(netlist, library, corner):
 	except IOError:
 		print('Error changing library!')
 		
-def simulation(simObj, measuresAC, measuresOP):
+def simulation(simObj, measures):
 	runSimulation(simObj[1], simObj[2])
-	measuresAC[simObj[0]] = parseACMeasures(simObj[2])
-	measuresOP[simObj[0]] = parseOPMeasures(simObj[2])
+	measures[simObj[0]] = parseMeasures(simObj[2])
 
-def processNetlists(q, measuresAC, measuresOP):
+def processNetlists(q, measures):
 	while not q.empty():
 		simObj = q.get()
-		simulation(simObj, measuresAC, measuresOP)
+		simulation(simObj, measures)
 		q.task_done()
 
 def main():
@@ -171,9 +143,8 @@ def main():
 	buildNetlistsWithCorners(q)
 	netlistsNr = q.qsize()
 
-	#Dictionaries that will hold AC and OP measures of all corners
-	measuresAC = [{} for n in range(netlistsNr)]
-	measuresOP = [{} for n in range(netlistsNr)]
+	#Dictionariy that will hold AC and OP measures of all corners
+	measures = [{} for n in range(netlistsNr)]
 
 	if netlistsNr > 1:
 		if netlistsNr < numThreads:
@@ -181,13 +152,13 @@ def main():
 
 		#Parallel
 		for i in range(numThreads):
-			t = threading.Thread(target=processNetlists, args=(q, measuresAC, measuresOP))
+			t = threading.Thread(target=processNetlists, args=(q, measures))
 			t.start()
 
 		q.join()
 	else:
 		simObj = q.get()
-		simulation(simObj, measuresAC, measuresOP)
+		simulation(simObj, measures)
 
 
 	#Not Parallel
@@ -195,7 +166,7 @@ def main():
 		simObj = q.get()
 		simulation(simObj, measuresAC, measuresOP)"""
 
-	getOutputFile(measuresAC, measuresOP)
+	getOutputFile(measures)
 	#removeOutputFiles()
 	#removeNetlists()
 

@@ -1,0 +1,56 @@
+******
+** ngspice-28 : Circuit level simulation program
+** The U. C. Berkeley CAD Group
+** Copyright 1985-1994, Regents of the University of California.
+** Please get your ngspice manual from http://ngspice.sourceforge.net/docs.html
+** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html
+** Creation Date: Mon Sep 17 17:14:21 WEST 2018
+******
+
+Circuit: ** generated for: eldo
+
+Warning: Model issue on line 2 :
+  .model n_hg_33_l130e nmos paramchk=1.0000e+00 level=8 version=3.2400e+00 ...
+unrecognized parameter (optacm) - ignored
+Warning: Model issue on line 7 :
+  .model p_hg_33_l130e pmos paramchk=1.0000e+00 level=8 version=3.2400e+00 ...
+unrecognized parameter (optacm) - ignored
+Doing analysis at TEMP = 25.000000 and TNOM = 27.000000
+
+
+No. of Data Rows : 2001
+gdc                 =  5.078321e+01
+gbw                 =  7.931982e+07
+pm                  =  6.174107e+01
+vov_mnm0 = 3.447197e-01
+delta_mnm0 = 1.302945e+00
+@m.xinova.mnm0[vgs] = 9.281540e-01
+@m.xinova.mnm0[vth] = 5.834343e-01
+@m.xinova.mnm0[vds] = 1.575151e+00
+@m.xinova.mnm0[vdsat] = 2.722067e-01
+@m.xinova.mnm0[id] = 1.126830e-04
+@m.xinova.mnm1[vgs] = 9.281496e-01
+@m.xinova.mnm1[vth] = 5.421540e-01
+@m.xinova.mnm1[vds] = 9.281399e-01
+@m.xinova.mnm1[vdsat] = 2.708691e-01
+@m.xinova.mnm1[id] = 1.363667e-05
+@m.xinova.mnm2[vgs] = 9.281496e-01
+@m.xinova.mnm2[vth] = 5.421540e-01
+@m.xinova.mnm2[vds] = 9.281399e-01
+@m.xinova.mnm2[vdsat] = 2.708691e-01
+@m.xinova.mnm2[id] = 1.363667e-05
+@m.xinova.mnm3[vgs] = 9.281540e-01
+@m.xinova.mnm3[vth] = 5.834343e-01
+@m.xinova.mnm3[vds] = 1.575151e+00
+@m.xinova.mnm3[vdsat] = 2.722067e-01
+@m.xinova.mnm3[id] = 1.126830e-04
+@m.xinova.mnm4[vgs] = 5.492716e-01
+@m.xinova.mnm4[vth] = 4.967387e-01
+@m.xinova.mnm4[vds] = 1.271111e+00
+@m.xinova.mnm4[vdsat] = 9.083151e-02
+@m.xinova.mnm4[id] = 1.363666e-05
+@m.xinova.mnm5[vgs] = 5.492716e-01
+@m.xinova.mnm5[vth] = 4.967387e-01
+@m.xinova.mnm5[vds] = 1.271111e+00
+@m.xinova.mnm5[vdsat] = 9.083151e-02
+@m.xinova.mnm5[id] = 1.363666e-05
