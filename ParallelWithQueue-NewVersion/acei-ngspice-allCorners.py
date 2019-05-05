@@ -88,15 +88,32 @@ def removeNetlists():
 
 def buildNetlistsWithCorners(q):
 	index = 1
+	paramFound = False
+	addToQueue = False
 	try:
 		with open(Corners, 'r') as file:
 			for line in file:
-				if '.lib' in line:
-					corner = line.split()[2]
+				if '.ALTER' in line:
+					corner = line.split()[1]
 					netlistName = copyNetlist(corner)
-					changeLibrary(netlistName, line, corner)
+				elif '.lib' in line:
+					pattern = '.INC'
+					addToQueue = True
+				elif '.PARAM' in line:
+					paramFound = True
+				elif paramFound:
+					pattern = line.split('=')[0]
+					addToQueue = True
+					paramFound = False
+				elif '.TEMP' in line:
+					pattern = line.split()[0]
+					addToQueue = True
+					
+				if addToQueue:
+					changeCorner(netlistName, line, pattern)
 					q.put((index, netlistName, corner))
 					index += 1
+					addToQueue = False
 	except IOError:
 		print("Cannot find corners file, only the given netlist will be simulated!")
 
@@ -106,16 +123,24 @@ def copyNetlist(corner):
 	shutil.copy(sys.argv[1], netlistName)
 	return netlistName
 
-def changeLibrary(netlist, library, corner):
-	lib = glob.glob('*.lib')[0]
+def changeCorner(netlist, corner, pattern):
 	try:
 		with open(netlist, 'r') as file:
-			content = file.read().replace('.INC "' + lib + '"', library)
-		with open(netlist, 'w') as file: 
-			file.write(content)
+			for line in file:
+				if pattern in line:
+					patternFound = True
+					break
+			if patternFound:
+				file.seek(0)
+				content = file.read().replace(line, corner)
+			else:
+				print('Error changing corner - Pattern not founc')
+		if patternFound:
+			with open(netlist, 'w') as file: 
+				file.write(content)
 	except IOError:
-		print('Error changing library!')
-		
+		print('Error changing corner!')
+
 def simulation(simObj, measures):
 	runSimulation(simObj[1], simObj[2])
 	measures[simObj[0]] = parseMeasures(simObj[2])

@@ -92,47 +92,47 @@ meas AC GDC FIND vdb(output) at=1
 meas AC GBW WHEN vdb(output)=0
 meas AC PM FIND vp(output) WHEN vdb(output)=0
 
-let vov_mnm0 = @m.xinova.mnm0[vgs] - @m.xinova.mnm0[vth] 
-print vov_mnm0
+*let vov_mnm0 = @m.xinova.mnm0[vgs] - @m.xinova.mnm0[vth] 
+*print vov_mnm0
 
-let delta_mnm0 = @m.xinova.mnm0[vds] - @m.xinova.mnm0[vdsat]
-print delta_mnm0
+*let delta_mnm0 = @m.xinova.mnm0[vds] - @m.xinova.mnm0[vdsat]
+*print delta_mnm0
 
-print @m.xinova.mnm0[vgs]
-print @m.xinova.mnm0[vth]
-print @m.xinova.mnm0[vds]
-print @m.xinova.mnm0[vdsat]
-print @m.xinova.mnm0[id]
+*print @m.xinova.mnm0[vgs]
+*print @m.xinova.mnm0[vth]
+*print @m.xinova.mnm0[vds]
+*print @m.xinova.mnm0[vdsat]
+*print @m.xinova.mnm0[id]
 
-print @m.xinova.mnm1[vgs]
-print @m.xinova.mnm1[vth]
-print @m.xinova.mnm1[vds]
-print @m.xinova.mnm1[vdsat]
-print @m.xinova.mnm1[id]
+*print @m.xinova.mnm1[vgs]
+*print @m.xinova.mnm1[vth]
+*print @m.xinova.mnm1[vds]
+*print @m.xinova.mnm1[vdsat]
+*print @m.xinova.mnm1[id]
 
-print @m.xinova.mnm2[vgs]
-print @m.xinova.mnm2[vth]
-print @m.xinova.mnm2[vds]
-print @m.xinova.mnm2[vdsat]
-print @m.xinova.mnm2[id]
+*print @m.xinova.mnm2[vgs]
+*print @m.xinova.mnm2[vth]
+*print @m.xinova.mnm2[vds]
+*print @m.xinova.mnm2[vdsat]
+*print @m.xinova.mnm2[id]
 
-print @m.xinova.mnm3[vgs]
-print @m.xinova.mnm3[vth]
-print @m.xinova.mnm3[vds]
-print @m.xinova.mnm3[vdsat]
-print @m.xinova.mnm3[id]
+*print @m.xinova.mnm3[vgs]
+*print @m.xinova.mnm3[vth]
+*print @m.xinova.mnm3[vds]
+*print @m.xinova.mnm3[vdsat]
+*print @m.xinova.mnm3[id]
 
-print @m.xinova.mnm4[vgs]
-print @m.xinova.mnm4[vth]
-print @m.xinova.mnm4[vds]
-print @m.xinova.mnm4[vdsat]
-print @m.xinova.mnm4[id]
+*print @m.xinova.mnm4[vgs]
+*print @m.xinova.mnm4[vth]
+*print @m.xinova.mnm4[vds]
+*print @m.xinova.mnm4[vdsat]
+*print @m.xinova.mnm4[id]
 
-print @m.xinova.mnm5[vgs]
-print @m.xinova.mnm5[vth]
-print @m.xinova.mnm5[vds]
-print @m.xinova.mnm5[vdsat]
-print @m.xinova.mnm5[id]
+*print @m.xinova.mnm5[vgs]
+*print @m.xinova.mnm5[vth]
+*print @m.xinova.mnm5[vds]
+*print @m.xinova.mnm5[vdsat]
+*print @m.xinova.mnm5[id]
 
 quit
 

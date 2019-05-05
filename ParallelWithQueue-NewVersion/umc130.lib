@@ -1,9 +1,11 @@
 *.PROTECT
 
-.lib '/Users/Catarina/Desktop/Tese/Libraries/L130E_HGIO_RVT33_V131/L130E_HG_RVT33_V131.lib.eldo' TT
+*.lib '/Users/Catarina/Desktop/Tese/Libraries/L130E_HGIO_RVT33_V131/L130E_HG_RVT33_V131.lib.eldo' TT
 
-.lib '/Users/Catarina/Desktop/Tese/Libraries/MML130E_MIMCAP_V121(1.0fF_per_um2)/MML130E_MIMCAP_V121.lib.eldo' typ
+*.lib '/Users/Catarina/Desktop/Tese/Libraries/MML130E_MIMCAP_V121(1.0fF_per_um2)/MML130E_MIMCAP_V121.lib.eldo' typ
 
-.lib '/Users/Catarina/Desktop/Tese/Libraries/MML130E_RES_V152/MML130E_RES_V152.lib.eldo' res_typ
+*.lib '/Users/Catarina/Desktop/Tese/Libraries/MML130E_RES_V152/MML130E_RES_V152.lib.eldo' res_typ
+
+.lib '/Users/Catarina/Desktop/Tese/Libraries/L130E_HGIO_LVT33_V131/L130E_HG_LVT33_V131.lib.eldo' TT
 
 *.UNPROTECT
