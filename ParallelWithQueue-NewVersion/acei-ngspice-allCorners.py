@@ -16,6 +16,8 @@ Extension = '.txt'
 
 #Corners file
 Corners = 'corners.inc'
+VariablesFile = 'design_var.inc'
+GlobalParamsFile = 'global-params.inc'
 
 # Runs each netlist in interactive mode and saves the standard output to a file
 def runSimulation(netlist, corner):
@@ -90,56 +92,65 @@ def buildNetlistsWithCorners(q):
 	index = 1
 	paramFound = False
 	addToQueue = False
+	changeCorner = True
 	try:
 		with open(Corners, 'r') as file:
 			for line in file:
 				if '.ALTER' in line:
 					corner = line.split()[1]
-					netlistName = copyNetlist(corner)
+					netlistName = copyFile(sys.argv[1], corner) #copy netlist
 				elif '.lib' in line:
 					pattern = '.INC'
+					changeCorner = True
 					addToQueue = True
 				elif '.PARAM' in line:
 					paramFound = True
 				elif paramFound:
 					pattern = line.split('=')[0]
-					addToQueue = True
+					newVariablesFileName = copyFile(VariablesFile, corner) #copy design variables file
 					paramFound = False
+					changeCorner = False
+					addToQueue = True
 				elif '.TEMP' in line:
 					pattern = line.split()[0]
+					changeCorner = True
 					addToQueue = True
 					
 				if addToQueue:
-					changeCorner(netlistName, line, pattern)
+					if not changeCorner:
+						changeFile(newVariablesFileName, line, pattern, True)
+						line = '.include ' + newVariablesFileName
+						pattern = VariablesFile
+					changeFile(netlistName, line, pattern, changeCorner)
 					q.put((index, netlistName, corner))
 					index += 1
 					addToQueue = False
 	except IOError:
 		print("Cannot find corners file, only the given netlist will be simulated!")
 
-def copyNetlist(corner):
-	netlist, ext = sys.argv[1].split('.')
-	netlistName = netlist + '_' + corner + '.' + ext
-	shutil.copy(sys.argv[1], netlistName)
-	return netlistName
+def copyFile(fileName, nameToAdd):
+	file, ext = fileName.split('.')
+	newFile  = file + '_' + nameToAdd + '.' + ext
+	shutil.copy(fileName, newFile)
+	return newFile
 
-def changeCorner(netlist, corner, pattern):
+def changeFile(fileName, toReplace, pattern, changeCorner):
 	try:
-		with open(netlist, 'r') as file:
+		with open(fileName, 'r') as file:
 			for line in file:
-				if pattern in line:
+				if (changeCorner and pattern in line and VariablesFile not in line and GlobalParamsFile not in line) or (not changeCorner and VariablesFile in line):
 					patternFound = True
 					break
 			if patternFound:
 				file.seek(0)
-				content = file.read().replace(line, corner)
+				content = file.read().replace(line, toReplace)
 			else:
-				print('Error changing corner - Pattern not founc')
+				print('Error changing netlist - Pattern not found')
 		if patternFound:
-			with open(netlist, 'w') as file: 
+			with open(fileName, 'w') as file: 
 				file.write(content)
 	except IOError:
-		print('Error changing corner!')
+		print('Error changing netlist!')
 
 def simulation(simObj, measures):
 	runSimulation(simObj[1], simObj[2])
@@ -159,7 +170,7 @@ def main():
 	q = queue.Queue(maxsize=0)
 
 	#Get the number of cores available
-	numThreads = os.cpu_count()-1
+	numThreads = os.cpu_count()
 
 	removePreviousFiles()
 	
@@ -169,7 +180,7 @@ def main():
 	netlistsNr = q.qsize()
 
 	#Dictionariy that will hold AC and OP measures of all corners
-	measures = [{} for n in range(netlistsNr)]
+	"""measures = [{} for n in range(netlistsNr)]
 
 	if netlistsNr > 1:
 		if netlistsNr < numThreads:
@@ -187,13 +198,13 @@ def main():
 
 
 	#Not Parallel
-	"""for i in range(netlistsNr):
+	for i in range(netlistsNr):
 		simObj = q.get()
 		simulation(simObj, measuresAC, measuresOP)"""
 
-	getOutputFile(measures)
-	#removeOutputFiles()
-	#removeNetlists()
+	"""getOutputFile2(measures)
+	removeOutputFiles()
+	removeNetlists()"""
 
 	print('Time: ', time.time() - start)
 
