@@ -1,0 +1,133 @@
+** Generated for: Eldo
+** Generated on: Feb 27 10:58:28 2013
+** Design library name: JoaoMelo
+** Design cell name: Folded
+** Design view name: Schematic
+
+.OPTION TUNING=FAST
+.OPTION AEX
+
+.INC "umc130.lib"
+
+.GLOBAL
+.include 'design_var.inc'
+
+*********************************************************
+** Library name: JoaoMelo
+** Cell name: Folded
+** View name: Schematic
+.subckt Folded gnd ibias vdd vin vip vout
+mnm7 net11 net11 gnd gnd N_HGLV_33_L130E w='_wn7/_nfn7' l=_ln7 as='_wn7/_nfn7<280e-9?(((78.4e-15+100e-9*(_wn7/_nfn7))+int((_nfn7-1)/2.0)*(78.4e-15+200e-9*(_wn7/_nfn7)))+(_nfn7/2-int(_nfn7/2)==0?78.4e-15+100e-9*(_wn7/_nfn7):0))/_nfn7:(((_wn7/_nfn7)*360e-9+int((_nfn7-1)/2.0)*((_wn7/_nfn7)*440e-9))+(_nfn7/2-int(_nfn7/2)==0?(_wn7/_nfn7)*360e-9:0))/_nfn7' ad='_wn7/_nfn7<280e-9?(int(_nfn7/2.0)*(78.4e-15+200e-9*(_wn7/_nfn7))+(_nfn7/2-int(_nfn7/2)!=0?78.4e-15+100e-9*(_wn7/_nfn7):0))/_nfn7:(int(_nfn7/2.0)*((_wn7/_nfn7)*440e-9)+(_nfn7/2-int(_nfn7/2)!=0?(_wn7/_nfn7)*360e-9:0))/_nfn7' ps='_wn7/_nfn7<280e-9?((1.32e-6+int((_nfn7-1)/2.0)*1.52e-6)+(_nfn7/2-int(_nfn7/2)==0?1.32e-6:0))/_nfn7:((2*(_wn7/_nfn7+360e-9)+int((_nfn7-1)/2.0)*(2*(_wn7/_nfn7+440e-9)))+(_nfn7/2-int(_nfn7/2)==0?2*(_wn7/_nfn7+360e-9):0))/_nfn7' pd='_wn7/_nfn7<280e-9?(int(_nfn7/2.0)*1.52e-6+(_nfn7/2-int(_nfn7/2)!=0?1.32e-6:0))/_nfn7:(int(_nfn7/2.0)*(2*(_wn7/_nfn7+440e-9))+(_nfn7/2-int(_nfn7/2)!=0?2*(_wn7/_nfn7+360e-9):0))/_nfn7' m='1*_nfn7'
+mnm8 net15 net11 gnd gnd N_HGLV_33_L130E w='_wn7/_nfn7' l=_ln7 as='_wn7/_nfn7<280e-9?(((78.4e-15+100e-9*(_wn7/_nfn7))+int((_nfn7-1)/2.0)*(78.4e-15+200e-9*(_wn7/_nfn7)))+(_nfn7/2-int(_nfn7/2)==0?78.4e-15+100e-9*(_wn7/_nfn7):0))/_nfn7:(((_wn7/_nfn7)*360e-9+int((_nfn7-1)/2.0)*((_wn7/_nfn7)*440e-9))+(_nfn7/2-int(_nfn7/2)==0?(_wn7/_nfn7)*360e-9:0))/_nfn7' ad='_wn7/_nfn7<280e-9?(int(_nfn7/2.0)*(78.4e-15+200e-9*(_wn7/_nfn7))+(_nfn7/2-int(_nfn7/2)!=0?78.4e-15+100e-9*(_wn7/_nfn7):0))/_nfn7:(int(_nfn7/2.0)*((_wn7/_nfn7)*440e-9)+(_nfn7/2-int(_nfn7/2)!=0?(_wn7/_nfn7)*360e-9:0))/_nfn7' ps='_wn7/_nfn7<280e-9?((1.32e-6+int((_nfn7-1)/2.0)*1.52e-6)+(_nfn7/2-int(_nfn7/2)==0?1.32e-6:0))/_nfn7:((2*(_wn7/_nfn7+360e-9)+int((_nfn7-1)/2.0)*(2*(_wn7/_nfn7+440e-9)))+(_nfn7/2-int(_nfn7/2)==0?2*(_wn7/_nfn7+360e-9):0))/_nfn7' pd='_wn7/_nfn7<280e-9?(int(_nfn7/2.0)*1.52e-6+(_nfn7/2-int(_nfn7/2)!=0?1.32e-6:0))/_nfn7:(int(_nfn7/2.0)*(2*(_wn7/_nfn7+440e-9))+(_nfn7/2-int(_nfn7/2)!=0?2*(_wn7/_nfn7+360e-9):0))/_nfn7' m='1*_nfn7'
+mnm2 net14 net27 gnd gnd N_HGLV_33_L130E w='_wn2/_nfn2' l=_ln1 as='_wn2/_nfn2<280e-9?(((78.4e-15+100e-9*(_wn2/_nfn2))+int((_nfn2-1)/2.0)*(78.4e-15+200e-9*(_wn2/_nfn2)))+(_nfn2/2-int(_nfn2/2)==0?78.4e-15+100e-9*(_wn2/_nfn2):0))/_nfn2:(((_wn2/_nfn2)*360e-9+int((_nfn2-1)/2.0)*((_wn2/_nfn2)*440e-9))+(_nfn2/2-int(_nfn2/2)==0?(_wn2/_nfn2)*360e-9:0))/_nfn2' ad='_wn2/_nfn2<280e-9?(int(_nfn2/2.0)*(78.4e-15+200e-9*(_wn2/_nfn2))+(_nfn2/2-int(_nfn2/2)!=0?78.4e-15+100e-9*(_wn2/_nfn2):0))/_nfn2:(int(_nfn2/2.0)*((_wn2/_nfn2)*440e-9)+(_nfn2/2-int(_nfn2/2)!=0?(_wn2/_nfn2)*360e-9:0))/_nfn2' ps='_wn2/_nfn2<280e-9?((1.32e-6+int((_nfn2-1)/2.0)*1.52e-6)+(_nfn2/2-int(_nfn2/2)==0?1.32e-6:0))/_nfn2:((2*(_wn2/_nfn2+360e-9)+int((_nfn2-1)/2.0)*(2*(_wn2/_nfn2+440e-9)))+(_nfn2/2-int(_nfn2/2)==0?2*(_wn2/_nfn2+360e-9):0))/_nfn2' pd='_wn2/_nfn2<280e-9?(int(_nfn2/2.0)*1.52e-6+(_nfn2/2-int(_nfn2/2)!=0?1.32e-6:0))/_nfn2:(int(_nfn2/2.0)*(2*(_wn2/_nfn2+440e-9))+(_nfn2/2-int(_nfn2/2)!=0?2*(_wn2/_nfn2+360e-9):0))/_nfn2' m='1*_nfn2'
+mnm3 net0124 vip net14 net14 N_HGLV_33_L130E w='_wn3/_nfp3' l=_ln3 as='_wn3/_nfp3<280e-9?(((78.4e-15+100e-9*(_wn3/_nfp3))+int((_nfp3-1)/2.0)*(78.4e-15+200e-9*(_wn3/_nfp3)))+(_nfp3/2-int(_nfp3/2)==0?78.4e-15+100e-9*(_wn3/_nfp3):0))/_nfp3:(((_wn3/_nfp3)*360e-9+int((_nfp3-1)/2.0)*((_wn3/_nfp3)*440e-9))+(_nfp3/2-int(_nfp3/2)==0?(_wn3/_nfp3)*360e-9:0))/_nfp3' ad='_wn3/_nfp3<280e-9?(int(_nfp3/2.0)*(78.4e-15+200e-9*(_wn3/_nfp3))+(_nfp3/2-int(_nfp3/2)!=0?78.4e-15+100e-9*(_wn3/_nfp3):0))/_nfp3:(int(_nfp3/2.0)*((_wn3/_nfp3)*440e-9)+(_nfp3/2-int(_nfp3/2)!=0?(_wn3/_nfp3)*360e-9:0))/_nfp3' ps='_wn3/_nfp3<280e-9?((1.32e-6+int((_nfp3-1)/2.0)*1.52e-6)+(_nfp3/2-int(_nfp3/2)==0?1.32e-6:0))/_nfp3:((2*(_wn3/_nfp3+360e-9)+int((_nfp3-1)/2.0)*(2*(_wn3/_nfp3+440e-9)))+(_nfp3/2-int(_nfp3/2)==0?2*(_wn3/_nfp3+360e-9):0))/_nfp3' pd='_wn3/_nfp3<280e-9?(int(_nfp3/2.0)*1.52e-6+(_nfp3/2-int(_nfp3/2)!=0?1.32e-6:0))/_nfp3:(int(_nfp3/2.0)*(2*(_wn3/_nfp3+440e-9))+(_nfp3/2-int(_nfp3/2)!=0?2*(_wn3/_nfp3+360e-9):0))/_nfp3' m='1*_nfp3'
+mnm4 net0128 vin net14 net14 N_HGLV_33_L130E w='_wn3/_nfn3' l=_ln3 as='_wn3/_nfn3<280e-9?(((78.4e-15+100e-9*(_wn3/_nfn3))+int((_nfn3-1)/2.0)*(78.4e-15+200e-9*(_wn3/_nfn3)))+(_nfn3/2-int(_nfn3/2)==0?78.4e-15+100e-9*(_wn3/_nfn3):0))/_nfn3:(((_wn3/_nfn3)*360e-9+int((_nfn3-1)/2.0)*((_wn3/_nfn3)*440e-9))+(_nfn3/2-int(_nfn3/2)==0?(_wn3/_nfn3)*360e-9:0))/_nfn3' ad='_wn3/_nfn3<280e-9?(int(_nfn3/2.0)*(78.4e-15+200e-9*(_wn3/_nfn3))+(_nfn3/2-int(_nfn3/2)!=0?78.4e-15+100e-9*(_wn3/_nfn3):0))/_nfn3:(int(_nfn3/2.0)*((_wn3/_nfn3)*440e-9)+(_nfn3/2-int(_nfn3/2)!=0?(_wn3/_nfn3)*360e-9:0))/_nfn3' ps='_wn3/_nfn3<280e-9?((1.32e-6+int((_nfn3-1)/2.0)*1.52e-6)+(_nfn3/2-int(_nfn3/2)==0?1.32e-6:0))/_nfn3:((2*(_wn3/_nfn3+360e-9)+int((_nfn3-1)/2.0)*(2*(_wn3/_nfn3+440e-9)))+(_nfn3/2-int(_nfn3/2)==0?2*(_wn3/_nfn3+360e-9):0))/_nfn3' pd='_wn3/_nfn3<280e-9?(int(_nfn3/2.0)*1.52e-6+(_nfn3/2-int(_nfn3/2)!=0?1.32e-6:0))/_nfn3:(int(_nfn3/2.0)*(2*(_wn3/_nfn3+440e-9))+(_nfn3/2-int(_nfn3/2)!=0?2*(_wn3/_nfn3+360e-9):0))/_nfn3' m='1*_nfn3'
+mnm6 vout net31 net15 net15 N_HGLV_33_L130E w='_wn5/_nfn5' l=_ln5 as='_wn5/_nfn5<280e-9?(((78.4e-15+100e-9*(_wn5/_nfn5))+int((_nfn5-1)/2.0)*(78.4e-15+200e-9*(_wn5/_nfn5)))+(_nfn5/2-int(_nfn5/2)==0?78.4e-15+100e-9*(_wn5/_nfn5):0))/_nfn5:(((_wn5/_nfn5)*360e-9+int((_nfn5-1)/2.0)*((_wn5/_nfn5)*440e-9))+(_nfn5/2-int(_nfn5/2)==0?(_wn5/_nfn5)*360e-9:0))/_nfn5' ad='_wn5/_nfn5<280e-9?(int(_nfn5/2.0)*(78.4e-15+200e-9*(_wn5/_nfn5))+(_nfn5/2-int(_nfn5/2)!=0?78.4e-15+100e-9*(_wn5/_nfn5):0))/_nfn5:(int(_nfn5/2.0)*((_wn5/_nfn5)*440e-9)+(_nfn5/2-int(_nfn5/2)!=0?(_wn5/_nfn5)*360e-9:0))/_nfn5' ps='_wn5/_nfn5<280e-9?((1.32e-6+int((_nfn5-1)/2.0)*1.52e-6)+(_nfn5/2-int(_nfn5/2)==0?1.32e-6:0))/_nfn5:((2*(_wn5/_nfn5+360e-9)+int((_nfn5-1)/2.0)*(2*(_wn5/_nfn5+440e-9)))+(_nfn5/2-int(_nfn5/2)==0?2*(_wn5/_nfn5+360e-9):0))/_nfn5' pd='_wn5/_nfn5<280e-9?(int(_nfn5/2.0)*1.52e-6+(_nfn5/2-int(_nfn5/2)!=0?1.32e-6:0))/_nfn5:(int(_nfn5/2.0)*(2*(_wn5/_nfn5+440e-9))+(_nfn5/2-int(_nfn5/2)!=0?2*(_wn5/_nfn5+360e-9):0))/_nfn5' m='1*_nfn5'
+mnm5 net31 net31 net11 net11 N_HGLV_33_L130E w='_wn5/_nfn5' l=_ln5 as='_wn5/_nfn5<280e-9?(((78.4e-15+100e-9*(_wn5/_nfn5))+int((_nfn5-1)/2.0)*(78.4e-15+200e-9*(_wn5/_nfn5)))+(_nfn5/2-int(_nfn5/2)==0?78.4e-15+100e-9*(_wn5/_nfn5):0))/_nfn5:(((_wn5/_nfn5)*360e-9+int((_nfn5-1)/2.0)*((_wn5/_nfn5)*440e-9))+(_nfn5/2-int(_nfn5/2)==0?(_wn5/_nfn5)*360e-9:0))/_nfn5' ad='_wn5/_nfn5<280e-9?(int(_nfn5/2.0)*(78.4e-15+200e-9*(_wn5/_nfn5))+(_nfn5/2-int(_nfn5/2)!=0?78.4e-15+100e-9*(_wn5/_nfn5):0))/_nfn5:(int(_nfn5/2.0)*((_wn5/_nfn5)*440e-9)+(_nfn5/2-int(_nfn5/2)!=0?(_wn5/_nfn5)*360e-9:0))/_nfn5' ps='_wn5/_nfn5<280e-9?((1.32e-6+int((_nfn5-1)/2.0)*1.52e-6)+(_nfn5/2-int(_nfn5/2)==0?1.32e-6:0))/_nfn5:((2*(_wn5/_nfn5+360e-9)+int((_nfn5-1)/2.0)*(2*(_wn5/_nfn5+440e-9)))+(_nfn5/2-int(_nfn5/2)==0?2*(_wn5/_nfn5+360e-9):0))/_nfn5' pd='_wn5/_nfn5<280e-9?(int(_nfn5/2.0)*1.52e-6+(_nfn5/2-int(_nfn5/2)!=0?1.32e-6:0))/_nfn5:(int(_nfn5/2.0)*(2*(_wn5/_nfn5+440e-9))+(_nfn5/2-int(_nfn5/2)!=0?2*(_wn5/_nfn5+360e-9):0))/_nfn5' m='1*_nfn5'
+mnm1 net27 net27 gnd gnd N_HGLV_33_L130E w='_wn1/_nfn1' l=_ln1 as='_wn1/_nfn1<280e-9?(((78.4e-15+100e-9*(_wn1/_nfn1))+int((_nfn1-1)/2.0)*(78.4e-15+200e-9*(_wn1/_nfn1)))+(_nfn1/2-int(_nfn1/2)==0?78.4e-15+100e-9*(_wn1/_nfn1):0))/_nfn1:(((_wn1/_nfn1)*360e-9+int((_nfn1-1)/2.0)*((_wn1/_nfn1)*440e-9))+(_nfn1/2-int(_nfn1/2)==0?(_wn1/_nfn1)*360e-9:0))/_nfn1' ad='_wn1/_nfn1<280e-9?(int(_nfn1/2.0)*(78.4e-15+200e-9*(_wn1/_nfn1))+(_nfn1/2-int(_nfn1/2)!=0?78.4e-15+100e-9*(_wn1/_nfn1):0))/_nfn1:(int(_nfn1/2.0)*((_wn1/_nfn1)*440e-9)+(_nfn1/2-int(_nfn1/2)!=0?(_wn1/_nfn1)*360e-9:0))/_nfn1' ps='_wn1/_nfn1<280e-9?((1.32e-6+int((_nfn1-1)/2.0)*1.52e-6)+(_nfn1/2-int(_nfn1/2)==0?1.32e-6:0))/_nfn1:((2*(_wn1/_nfn1+360e-9)+int((_nfn1-1)/2.0)*(2*(_wn1/_nfn1+440e-9)))+(_nfn1/2-int(_nfn1/2)==0?2*(_wn1/_nfn1+360e-9):0))/_nfn1' pd='_wn1/_nfn1<280e-9?(int(_nfn1/2.0)*1.52e-6+(_nfn1/2-int(_nfn1/2)!=0?1.32e-6:0))/_nfn1:(int(_nfn1/2.0)*(2*(_wn1/_nfn1+440e-9))+(_nfn1/2-int(_nfn1/2)!=0?2*(_wn1/_nfn1+360e-9):0))/_nfn1' m='1*_nfn1'
+mpm4 net0128 net56 vdd vdd P_HGLV_33_L130E w='_wp3/_nfp3' l=_lp0 as='_wp3/_nfp3<280e-9?(((78.4e-15+100e-9*(_wp3/_nfp3))+int((_nfp3-1)/2.0)*(78.4e-15+200e-9*(_wp3/_nfp3)))+(_nfp3/2-int(_nfp3/2)==0?78.4e-15+100e-9*(_wp3/_nfp3):0))/_nfp3:(((_wp3/_nfp3)*360e-9+int((_nfp3-1)/2.0)*((_wp3/_nfp3)*440e-9))+(_nfp3/2-int(_nfp3/2)==0?(_wp3/_nfp3)*360e-9:0))/_nfp3' ad='_wp3/_nfp3<280e-9?(int(_nfp3/2.0)*(78.4e-15+200e-9*(_wp3/_nfp3))+(_nfp3/2-int(_nfp3/2)!=0?78.4e-15+100e-9*(_wp3/_nfp3):0))/_nfp3:(int(_nfp3/2.0)*((_wp3/_nfp3)*440e-9)+(_nfp3/2-int(_nfp3/2)!=0?(_wp3/_nfp3)*360e-9:0))/_nfp3' ps='_wp3/_nfp3<280e-9?((1.32e-6+int((_nfp3-1)/2.0)*1.52e-6)+(_nfp3/2-int(_nfp3/2)==0?1.32e-6:0))/_nfp3:((2*(_wp3/_nfp3+360e-9)+int((_nfp3-1)/2.0)*(2*(_wp3/_nfp3+440e-9)))+(_nfp3/2-int(_nfp3/2)==0?2*(_wp3/_nfp3+360e-9):0))/_nfp3' pd='_wp3/_nfp3<280e-9?(int(_nfp3/2.0)*1.52e-6+(_nfp3/2-int(_nfp3/2)!=0?1.32e-6:0))/_nfp3:(int(_nfp3/2.0)*(2*(_wp3/_nfp3+440e-9))+(_nfp3/2-int(_nfp3/2)!=0?2*(_wp3/_nfp3+360e-9):0))/_nfp3' m='1*_nfp3'
+mpm3 net0124 net56 vdd vdd P_HGLV_33_L130E w='_wp3/_nfp3' l=_lp0 as='_wp3/_nfp3<280e-9?(((78.4e-15+100e-9*(_wp3/_nfp3))+int((_nfp3-1)/2.0)*(78.4e-15+200e-9*(_wp3/_nfp3)))+(_nfp3/2-int(_nfp3/2)==0?78.4e-15+100e-9*(_wp3/_nfp3):0))/_nfp3:(((_wp3/_nfp3)*360e-9+int((_nfp3-1)/2.0)*((_wp3/_nfp3)*440e-9))+(_nfp3/2-int(_nfp3/2)==0?(_wp3/_nfp3)*360e-9:0))/_nfp3' ad='_wp3/_nfp3<280e-9?(int(_nfp3/2.0)*(78.4e-15+200e-9*(_wp3/_nfp3))+(_nfp3/2-int(_nfp3/2)!=0?78.4e-15+100e-9*(_wp3/_nfp3):0))/_nfp3:(int(_nfp3/2.0)*((_wp3/_nfp3)*440e-9)+(_nfp3/2-int(_nfp3/2)!=0?(_wp3/_nfp3)*360e-9:0))/_nfp3' ps='_wp3/_nfp3<280e-9?((1.32e-6+int((_nfp3-1)/2.0)*1.52e-6)+(_nfp3/2-int(_nfp3/2)==0?1.32e-6:0))/_nfp3:((2*(_wp3/_nfp3+360e-9)+int((_nfp3-1)/2.0)*(2*(_wp3/_nfp3+440e-9)))+(_nfp3/2-int(_nfp3/2)==0?2*(_wp3/_nfp3+360e-9):0))/_nfp3' pd='_wp3/_nfp3<280e-9?(int(_nfp3/2.0)*1.52e-6+(_nfp3/2-int(_nfp3/2)!=0?1.32e-6:0))/_nfp3:(int(_nfp3/2.0)*(2*(_wp3/_nfp3+440e-9))+(_nfp3/2-int(_nfp3/2)!=0?2*(_wp3/_nfp3+360e-9):0))/_nfp3' m='1*_nfp3'
+mpm6 vout net27 net0128 net0128 P_HGLV_33_L130E w='_wp5/_nfp5' l=_lp1 as='_wp5/_nfp5<280e-9?(((78.4e-15+100e-9*(_wp5/_nfp5))+int((_nfp5-1)/2.0)*(78.4e-15+200e-9*(_wp5/_nfp5)))+(_nfp5/2-int(_nfp5/2)==0?78.4e-15+100e-9*(_wp5/_nfp5):0))/_nfp5:(((_wp5/_nfp5)*360e-9+int((_nfp5-1)/2.0)*((_wp5/_nfp5)*440e-9))+(_nfp5/2-int(_nfp5/2)==0?(_wp5/_nfp5)*360e-9:0))/_nfp5' ad='_wp5/_nfp5<280e-9?(int(_nfp5/2.0)*(78.4e-15+200e-9*(_wp5/_nfp5))+(_nfp5/2-int(_nfp5/2)!=0?78.4e-15+100e-9*(_wp5/_nfp5):0))/_nfp5:(int(_nfp5/2.0)*((_wp5/_nfp5)*440e-9)+(_nfp5/2-int(_nfp5/2)!=0?(_wp5/_nfp5)*360e-9:0))/_nfp5' ps='_wp5/_nfp5<280e-9?((1.32e-6+int((_nfp5-1)/2.0)*1.52e-6)+(_nfp5/2-int(_nfp5/2)==0?1.32e-6:0))/_nfp5:((2*(_wp5/_nfp5+360e-9)+int((_nfp5-1)/2.0)*(2*(_wp5/_nfp5+440e-9)))+(_nfp5/2-int(_nfp5/2)==0?2*(_wp5/_nfp5+360e-9):0))/_nfp5' pd='_wp5/_nfp5<280e-9?(int(_nfp5/2.0)*1.52e-6+(_nfp5/2-int(_nfp5/2)!=0?1.32e-6:0))/_nfp5:(int(_nfp5/2.0)*(2*(_wp5/_nfp5+440e-9))+(_nfp5/2-int(_nfp5/2)!=0?2*(_wp5/_nfp5+360e-9):0))/_nfp5' m='1*_nfp5'
+mpm0 net56 net56 ibias ibias P_HGLV_33_L130E w='_wp0/_nfp0' l=_lp0 as='_wp0/_nfp0<280e-9?(((78.4e-15+100e-9*(_wp0/_nfp0))+int((_nfp0-1)/2.0)*(78.4e-15+200e-9*(_wp0/_nfp0)))+(_nfp0/2-int(_nfp0/2)==0?78.4e-15+100e-9*(_wp0/_nfp0):0))/_nfp0:(((_wp0/_nfp0)*360e-9+int((_nfp0-1)/2.0)*((_wp0/_nfp0)*440e-9))+(_nfp0/2-int(_nfp0/2)==0?(_wp0/_nfp0)*360e-9:0))/_nfp0' ad='_wp0/_nfp0<280e-9?(int(_nfp0/2.0)*(78.4e-15+200e-9*(_wp0/_nfp0))+(_nfp0/2-int(_nfp0/2)!=0?78.4e-15+100e-9*(_wp0/_nfp0):0))/_nfp0:(int(_nfp0/2.0)*((_wp0/_nfp0)*440e-9)+(_nfp0/2-int(_nfp0/2)!=0?(_wp0/_nfp0)*360e-9:0))/_nfp0' ps='_wp0/_nfp0<280e-9?((1.32e-6+int((_nfp0-1)/2.0)*1.52e-6)+(_nfp0/2-int(_nfp0/2)==0?1.32e-6:0))/_nfp0:((2*(_wp0/_nfp0+360e-9)+int((_nfp0-1)/2.0)*(2*(_wp0/_nfp0+440e-9)))+(_nfp0/2-int(_nfp0/2)==0?2*(_wp0/_nfp0+360e-9):0))/_nfp0' pd='_wp0/_nfp0<280e-9?(int(_nfp0/2.0)*1.52e-6+(_nfp0/2-int(_nfp0/2)!=0?1.32e-6:0))/_nfp0:(int(_nfp0/2.0)*(2*(_wp0/_nfp0+440e-9))+(_nfp0/2-int(_nfp0/2)!=0?2*(_wp0/_nfp0+360e-9):0))/_nfp0' m='1*_nfp0'
+mpm5 net31 net27 net0124 net0124 P_HGLV_33_L130E w='_wp5/_nfp5' l=_lp1 as='_wp5/_nfp5<280e-9?(((78.4e-15+100e-9*(_wp5/_nfp5))+int((_nfp5-1)/2.0)*(78.4e-15+200e-9*(_wp5/_nfp5)))+(_nfp5/2-int(_nfp5/2)==0?78.4e-15+100e-9*(_wp5/_nfp5):0))/_nfp5:(((_wp5/_nfp5)*360e-9+int((_nfp5-1)/2.0)*((_wp5/_nfp5)*440e-9))+(_nfp5/2-int(_nfp5/2)==0?(_wp5/_nfp5)*360e-9:0))/_nfp5' ad='_wp5/_nfp5<280e-9?(int(_nfp5/2.0)*(78.4e-15+200e-9*(_wp5/_nfp5))+(_nfp5/2-int(_nfp5/2)!=0?78.4e-15+100e-9*(_wp5/_nfp5):0))/_nfp5:(int(_nfp5/2.0)*((_wp5/_nfp5)*440e-9)+(_nfp5/2-int(_nfp5/2)!=0?(_wp5/_nfp5)*360e-9:0))/_nfp5' ps='_wp5/_nfp5<280e-9?((1.32e-6+int((_nfp5-1)/2.0)*1.52e-6)+(_nfp5/2-int(_nfp5/2)==0?1.32e-6:0))/_nfp5:((2*(_wp5/_nfp5+360e-9)+int((_nfp5-1)/2.0)*(2*(_wp5/_nfp5+440e-9)))+(_nfp5/2-int(_nfp5/2)==0?2*(_wp5/_nfp5+360e-9):0))/_nfp5' pd='_wp5/_nfp5<280e-9?(int(_nfp5/2.0)*1.52e-6+(_nfp5/2-int(_nfp5/2)!=0?1.32e-6:0))/_nfp5:(int(_nfp5/2.0)*(2*(_wp5/_nfp5+440e-9))+(_nfp5/2-int(_nfp5/2)!=0?2*(_wp5/_nfp5+360e-9):0))/_nfp5' m='1*_nfp5'
+mpm1 net27 net27 net56 net56 P_HGLV_33_L130E w='_wp1/_nfp1' l=_lp1 as='_wp1/_nfp1<280e-9?(((78.4e-15+100e-9*(_wp1/_nfp1))+int((_nfp1-1)/2.0)*(78.4e-15+200e-9*(_wp1/_nfp1)))+(_nfp1/2-int(_nfp1/2)==0?78.4e-15+100e-9*(_wp1/_nfp1):0))/_nfp1:(((_wp1/_nfp1)*360e-9+int((_nfp1-1)/2.0)*((_wp1/_nfp1)*440e-9))+(_nfp1/2-int(_nfp1/2)==0?(_wp1/_nfp1)*360e-9:0))/_nfp1' ad='_wp1/_nfp1<280e-9?(int(_nfp1/2.0)*(78.4e-15+200e-9*(_wp1/_nfp1))+(_nfp1/2-int(_nfp1/2)!=0?78.4e-15+100e-9*(_wp1/_nfp1):0))/_nfp1:(int(_nfp1/2.0)*((_wp1/_nfp1)*440e-9)+(_nfp1/2-int(_nfp1/2)!=0?(_wp1/_nfp1)*360e-9:0))/_nfp1' ps='_wp1/_nfp1<280e-9?((1.32e-6+int((_nfp1-1)/2.0)*1.52e-6)+(_nfp1/2-int(_nfp1/2)==0?1.32e-6:0))/_nfp1:((2*(_wp1/_nfp1+360e-9)+int((_nfp1-1)/2.0)*(2*(_wp1/_nfp1+440e-9)))+(_nfp1/2-int(_nfp1/2)==0?2*(_wp1/_nfp1+360e-9):0))/_nfp1' pd='_wp1/_nfp1<280e-9?(int(_nfp1/2.0)*1.52e-6+(_nfp1/2-int(_nfp1/2)!=0?1.32e-6:0))/_nfp1:(int(_nfp1/2.0)*(2*(_wp1/_nfp1+440e-9))+(_nfp1/2-int(_nfp1/2)!=0?2*(_wp1/_nfp1+360e-9):0))/_nfp1' m='1*_nfp1'
+.ends
+*********************************************************
+
+*********************************************************
+** Library name: JoaoMelo
+** Cell name: Testbench
+** View name: Schematic
+xi10 0 net15 vddnet vin vip vout Folded
+c0 vout 0 10e-12
+v2 vin 0 DC=1.65	
+v1 vip 0 DC=1.65 AC 1
+v0 vddnet 0 DC=_vdd
+i1 vddnet net15 DC=100u
+
+xi11 0 net16 vddd vinn vipp voutt Folded
+c1 voutt 0 10e-12
+v5 vipp 0 DC=1.65
+v4 vinn 0 DC=1.65
+v3 vddd 0 DC=_vdd AC 1
+i2 vddd net16 DC=100u
+*********************************************************
+
+*********** Analysis ***************************
+.TEMP 25.0
+.AC DEC 200 1 1G 
+.OPTION BRIEF=0
+************************************************
+
+*********** Performance Measures ***************
+.EXTRACT DCAC label=IDD   ((-i(v0))-(100u))
+.EXTRACT AC   label=GDC   YVAL(VDB(vout),1)
+.EXTRACT AC   label=GBW   XDOWN(VDB(vout),0,start,end)
+.EXTRACT AC   label=PM    180+MIN(VP(vout),start,Extract(GBW))
+.EXTRACT AC   label=FOM   (((GBW/1000000)*10)/(IDD*1000))
+.EXTRACT AC   label=GPS     YVAL(VDB(voutt),1)
+.EXTRACT AC   label=PSRR    GAC-GPS
+************************************************
+
+*********** OVERDRIVES *************************
+.MEASURE AC outswing    = param('(1.65)-(vdsat(xi10.mnm6))-(vdsat(xi10.mnm8))')
+.MEASURE AC vov_mnm7    = param('(vgs(xi10.mnm7)-lv9(xi10.mnm7))')
+.MEASURE AC vov_mnm8    = param('(vgs(xi10.mnm8)-lv9(xi10.mnm8))')
+.MEASURE AC vov_mnm2    = param('(vgs(xi10.mnm2)-lv9(xi10.mnm2))')
+.MEASURE AC vov_mnm3    = param('(vgs(xi10.mnm3)-lv9(xi10.mnm3))')
+.MEASURE AC vov_mnm4    = param('(vgs(xi10.mnm4)-lv9(xi10.mnm4))')
+.MEASURE AC vov_mnm6    = param('(vgs(xi10.mnm6)-lv9(xi10.mnm6))')
+.MEASURE AC vov_mnm5    = param('(vgs(xi10.mnm5)-lv9(xi10.mnm5))')
+.MEASURE AC vov_mnm1    = param('(vgs(xi10.mnm1)-lv9(xi10.mnm1))')
+.MEASURE AC vov_mpm4    = param('(lv9(xi10.mpm4)-vgs(xi10.mpm4))')
+.MEASURE AC vov_mpm3    = param('(lv9(xi10.mpm3)-vgs(xi10.mpm3))')
+.MEASURE AC vov_mpm6    = param('(lv9(xi10.mpm6)-vgs(xi10.mpm6))')
+.MEASURE AC vov_mpm0    = param('(lv9(xi10.mpm0)-vgs(xi10.mpm0))')
+.MEASURE AC vov_mpm5    = param('(lv9(xi10.mpm5)-vgs(xi10.mpm5))')
+.MEASURE AC vov_mpm1    = param('(lv9(xi10.mpm1)-vgs(xi10.mpm1))')
+*************************************************
+
+*********** MARGINS *****************************
+.MEASURE AC delta_mnm7    = param('(vds(xi10.mnm7)-vdsat(xi10.mnm7))')
+.MEASURE AC delta_mnm8    = param('(vds(xi10.mnm8)-vdsat(xi10.mnm8))')
+.MEASURE AC delta_mnm2    = param('(vds(xi10.mnm2)-vdsat(xi10.mnm2))')
+.MEASURE AC delta_mnm3    = param('(vds(xi10.mnm3)-vdsat(xi10.mnm3))')
+.MEASURE AC delta_mnm4    = param('(vds(xi10.mnm4)-vdsat(xi10.mnm4))')
+.MEASURE AC delta_mnm6    = param('(vds(xi10.mnm6)-vdsat(xi10.mnm6))')
+.MEASURE AC delta_mnm5    = param('(vds(xi10.mnm5)-vdsat(xi10.mnm5))')
+.MEASURE AC delta_mnm1    = param('(vds(xi10.mnm1)-vdsat(xi10.mnm1))')
+.MEASURE AC delta_mpm4    = param('(vdsat(xi10.mpm4)-vds(xi10.mpm4))')
+.MEASURE AC delta_mpm3    = param('(vdsat(xi10.mpm3)-vds(xi10.mpm3))')
+.MEASURE AC delta_mpm6    = param('(vdsat(xi10.mpm6)-vds(xi10.mpm6))')
+.MEASURE AC delta_mpm0    = param('(vdsat(xi10.mpm0)-vds(xi10.mpm0))')
+.MEASURE AC delta_mpm5    = param('(vdsat(xi10.mpm5)-vds(xi10.mpm5))')
+.MEASURE AC delta_mpm1    = param('(vdsat(xi10.mpm1)-vds(xi10.mpm1))')
+************************************************
+
+.ALTER SS
+.lib '/pdk/umc/umc_013/models/2011.09.14/G-05-MIXED_MODE_RFCMOS13-MMC_L130E-SPICE-Ver.1.12_P1/G-05-MIXED_MODERFCMOS13-MMCL130E-SPICE_V1121/G-05-MIXED_MODERFCMOS13-MMCL130E-SPICE_V1111/L130E_MM_TWINWELL_V182/L130E_HGIO_LVT33_V131/L130E_HG_LVT33_V131.lib.eldo' SS
+
+.ALTER SNFP
+.lib '/pdk/umc/umc_013/models/2011.09.14/G-05-MIXED_MODE_RFCMOS13-MMC_L130E-SPICE-Ver.1.12_P1/G-05-MIXED_MODERFCMOS13-MMCL130E-SPICE_V1121/G-05-MIXED_MODERFCMOS13-MMCL130E-SPICE_V1111/L130E_MM_TWINWELL_V182/L130E_HGIO_LVT33_V131/L130E_HG_LVT33_V131.lib.eldo' SNFP
+
+.ALTER FNSP
+.lib '/pdk/umc/umc_013/models/2011.09.14/G-05-MIXED_MODE_RFCMOS13-MMC_L130E-SPICE-Ver.1.12_P1/G-05-MIXED_MODERFCMOS13-MMCL130E-SPICE_V1121/G-05-MIXED_MODERFCMOS13-MMCL130E-SPICE_V1111/L130E_MM_TWINWELL_V182/L130E_HGIO_LVT33_V131/L130E_HG_LVT33_V131.lib.eldo' FNSP
+
+.ALTER FF
+.lib '/pdk/umc/umc_013/models/2011.09.14/G-05-MIXED_MODE_RFCMOS13-MMC_L130E-SPICE-Ver.1.12_P1/G-05-MIXED_MODERFCMOS13-MMCL130E-SPICE_V1121/G-05-MIXED_MODERFCMOS13-MMCL130E-SPICE_V1111/L130E_MM_TWINWELL_V182/L130E_HGIO_LVT33_V131/L130E_HG_LVT33_V131.lib.eldo' FF
+
+.ALTER VMAX
+.PARAM
++_vdd=3.63
+
+.ALTER VMIN
+.PARAM
++_vdd=2.97
+
+.ALTER TMAX
+.TEMP 55.0
+
+.ALTER TMIN
+.TEMP 0
+
+.END
