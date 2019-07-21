@@ -180,7 +180,7 @@ def main():
 	netlistsNr = q.qsize()
 
 	#Dictionariy that will hold AC and OP measures of all corners
-	"""measures = [{} for n in range(netlistsNr)]
+	measures = [{} for n in range(netlistsNr)]
 
 	if netlistsNr > 1:
 		if netlistsNr < numThreads:
@@ -200,7 +200,7 @@ def main():
 	#Not Parallel
 	for i in range(netlistsNr):
 		simObj = q.get()
-		simulation(simObj, measuresAC, measuresOP)"""
+		simulation(simObj, measuresAC, measuresOP)
 
 	"""getOutputFile2(measures)
 	removeOutputFiles()
