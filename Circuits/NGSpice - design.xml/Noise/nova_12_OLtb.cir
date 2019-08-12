@@ -10,7 +10,7 @@
 .INC "umc130.lib"
 
 .GLOBAL
-.PARAM vdd=1.2 vcm=0.6 c1=0.000000000006
+
 .include 'design_var.inc'
 
 *********** Unit Under Test ********************
@@ -87,10 +87,10 @@ let vov_mnmbiasn = @mnmbiasn[vgs] - @mnmbiasn[vth]
 print vov_mnmbiasn
 
 let vov_mnmbiasp = @mnmbiasp[vgs] - @mnmbiasp[vth] 
-print vov_mnmbiasn
+print vov_mnmbiasp
 
 let vov_mpmbiasp = @mpmbiasp[vgs] - @mpmbiasp[vth] 
-print vov_mpmbiasn
+print vov_mpmbiasp
 
 let vov_mpm0 = @m.xi16.mpm0[vgs] - @m.xi16.mpm0[vth] 
 print vov_mpm0

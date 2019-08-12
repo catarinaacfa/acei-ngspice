@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE Design SYSTEM "design.dtd">
+<Design>
+	<Description name="Folded" author="RP"
+		description="Folded"
+		schematic="Folded.png" />
+
+	<Corner name="SS"/>
+	<Corner name="SNFP"/>
+	<Corner name="FNSP"/>
+	<Corner name="FF"/>
+	<Corner name="VMAX"/>
+	<Corner name="VMIN"/>
+	<Corner name="TMAX"/>
+	<Corner name="TMIN"/>
+	
+	<Testbench simulator="eldo">
+		<Typical in="Folded.cir.eldo"   out="Folded.cir.eldo.aex"   args="-nochi -nojwdb -silent"/>
+		<Corners in="Folded.cir.eldo.corners"   out="Folded.cir.eldo.corners.aex"   args="-nochi -nojwdb -silent"/>
+	</Testbench>
+	
+	<TechnologyNode id="UMC_013"/>
+
+		<Variable name="_wp5" min="2e-6" step="1e-7" max="298e-6" />
+		<Variable name="_wp3" min="2e-6" step="1e-7" max="298e-6" />
+		<Variable name="_wp1" min="2e-6" step="1e-7" max="298e-6" />
+		<Variable name="_wp0" min="2e-6" step="1e-7" max="298e-6" />
+		<Variable name="_wn7" min="2e-6" step="1e-7" max="298e-6" />
+		<Variable name="_wn5" min="2e-6" step="1e-7" max="298e-6" />
+		<Variable name="_wn3" min="2e-6" step="1e-7" max="298e-6" />
+		<Variable name="_wn2" min="2e-6" step="1e-7" max="298e-6" />
+		<Variable name="_wn1" min="2e-6" step="1e-7" max="298e-6" />
+
+		<Variable name="_nfp5" min="1" step="2" max="16" />
+		<Variable name="_nfp3" min="1" step="2" max="16" />
+		<Variable name="_nfp1" min="1" step="2" max="16" />
+		<Variable name="_nfp0" min="1" step="2" max="16" />
+		<Variable name="_nfn7" min="1" step="2" max="16" />
+		<Variable name="_nfn5" min="1" step="2" max="16" />
+		<Variable name="_nfn3" min="1" step="2" max="16" />
+		<Variable name="_nfn2" min="1" step="2" max="16" />
+		<Variable name="_nfn1" min="1" step="2" max="16" />
+
+		<Variable name="_lp1" min="0.36e-6" step="0.1e-7" max="2.36e-6" />
+		<Variable name="_lp0" min="0.36e-6" step="0.1e-7" max="2.36e-6" />
+		<Variable name="_ln7" min="0.36e-6" step="0.1e-7" max="2.36e-6" />
+		<Variable name="_ln5" min="0.36e-6" step="0.1e-7" max="2.36e-6" />
+		<Variable name="_ln3" min="0.36e-6" step="0.1e-7" max="2.36e-6" />
+		<Variable name="_ln1" min="0.36e-6" step="0.1e-7" max="2.36e-6" />
+		
+		<MeasureDescription name="idd"		description="Current"							units="[A]" />
+		<MeasureDescription name="voff"		description="Structural Offset"					units="[V]" />
+		<MeasureDescription name="gdc"		description="Gain DC"							units="[dB]" />
+		<MeasureDescription name="gbw"		description="Unity Gain Frequency"				units="[Hz]" />
+		<MeasureDescription name="pm"		description="Phase Margin"						units="[degrees]" />
+		<MeasureDescription name="fom"		description="Figure of Merit"					units="[MHz * pF / mA]" />
+		<MeasureDescription name="PSRR" 	description="Power Supply Rejection Ratio"      units="[dB]" />
+		<MeasureDescription name="SLEWRATE"	description="Slew-Rate"                   		units="[V/us]" />	
+		<MeasureDescription name="TRISE"   	description="Rise-Time"                     	units="[s]" />		
+		<MeasureDescription name="TFALL"   	description="Fall-Time"                     	units="[s]" />
+		
+		<MeasureDescription name="outswing"	description="Output Swing" units="[V]" />
+		<MeasureDescription name="vov_mnm7"	description="Overdrive"	units="[V]" />
+		<MeasureDescription name="vov_mnm8"	description="Overdrive"	units="[V]" />
+		<MeasureDescription name="vov_mnm2"	description="Overdrive"	units="[V]" />
+		<MeasureDescription name="vov_mnm3"	description="Overdrive"	units="[V]" />
+		<MeasureDescription name="vov_mnm4"	description="Overdrive"	units="[V]" />
+		<MeasureDescription name="vov_mnm6"	description="Overdrive"	units="[V]" />
+		<MeasureDescription name="vov_mnm5"	description="Overdrive"	units="[V]" />
+		<MeasureDescription name="vov_mnm1"	description="Overdrive"	units="[V]" />
+		<MeasureDescription name="vov_mpm4"	description="Overdrive"	units="[V]" />
+		<MeasureDescription name="vov_mpm3"	description="Overdrive"	units="[V]" />
+		<MeasureDescription name="vov_mpm6"	description="Overdrive"	units="[V]" />
+		<MeasureDescription name="vov_mpm0"	description="Overdrive"	units="[V]" />
+		<MeasureDescription name="vov_mpm5"	description="Overdrive"	units="[V]" />
+		<MeasureDescription name="vov_mpm1"	description="Overdrive"	units="[V]" />
+
+		<MeasureDescription name="delta_mnm7"	description="VDS - VDSsat"	units="[V]" />
+		<MeasureDescription name="delta_mnm8"	description="VDS - VDSsat"	units="[V]" />
+		<MeasureDescription name="delta_mnm2"	description="VDS - VDSsat"	units="[V]" />
+		<MeasureDescription name="delta_mnm3"	description="VDS - VDSsat"	units="[V]" />
+		<MeasureDescription name="delta_mnm4"	description="VDS - VDSsat"	units="[V]" />
+		<MeasureDescription name="delta_mnm6"	description="VDS - VDSsat"	units="[V]" />
+		<MeasureDescription name="delta_mnm5"	description="VDS - VDSsat"	units="[V]" />
+		<MeasureDescription name="delta_mnm1"	description="VDS - VDSsat"	units="[V]" />
+		<MeasureDescription name="delta_mpm4"	description="VDS - VDSsat"	units="[V]" />
+		<MeasureDescription name="delta_mpm3"	description="VDS - VDSsat"	units="[V]" />
+		<MeasureDescription name="delta_mpm6"	description="VDS - VDSsat"	units="[V]" />
+		<MeasureDescription name="delta_mpm0"	description="VDS - VDSsat"	units="[V]" />
+		<MeasureDescription name="delta_mpm5"	description="VDS - VDSsat"	units="[V]" />
+		<MeasureDescription name="delta_mpm1"	description="VDS - VDSsat"	units="[V]" />
+						
+		<Constraint op="MEVAL_GEQ"	value="1.0"	meas_name="outswing" />
+		<Constraint op="MEVAL_GEQ"	value="0.1"	meas_name="vov_mnm7" />
+		<Constraint op="MEVAL_GEQ"	value="0.1"	meas_name="vov_mnm8" />
+		<Constraint op="MEVAL_GEQ"	value="0.1"	meas_name="vov_mnm2" />
+		<Constraint op="MEVAL_GEQ"	value="0.1"	meas_name="vov_mnm3" />
+		<Constraint op="MEVAL_GEQ"	value="0.1"	meas_name="vov_mnm4" />
+		<Constraint op="MEVAL_GEQ"	value="0.1"	meas_name="vov_mnm6" />
+		<Constraint op="MEVAL_GEQ"	value="0.1"	meas_name="vov_mnm5" />
+		<Constraint op="MEVAL_GEQ"	value="0.1"	meas_name="vov_mnm1" />
+		<Constraint op="MEVAL_GEQ"	value="0.1"	meas_name="vov_mpm4" />
+		<Constraint op="MEVAL_GEQ"	value="0.1"	meas_name="vov_mpm3" />
+		<Constraint op="MEVAL_GEQ"	value="0.1"	meas_name="vov_mpm6" />
+		<Constraint op="MEVAL_GEQ"	value="0.1"	meas_name="vov_mpm0" />
+		<Constraint op="MEVAL_GEQ"	value="0.1"	meas_name="vov_mpm5" />
+		<Constraint op="MEVAL_GEQ"	value="0.1"	meas_name="vov_mpm1" />
+		
+		<Constraint op="MEVAL_GEQ"	value="0.07"	meas_name="delta_mnm7" />
+		<Constraint op="MEVAL_GEQ"	value="0.07"	meas_name="delta_mnm8" />
+		<Constraint op="MEVAL_GEQ"	value="0.07"	meas_name="delta_mnm2" />
+		<Constraint op="MEVAL_GEQ"	value="0.07"	meas_name="delta_mnm3" />
+		<Constraint op="MEVAL_GEQ"	value="0.07"	meas_name="delta_mnm4" />
+		<Constraint op="MEVAL_GEQ"	value="0.07"	meas_name="delta_mnm6" />
+		<Constraint op="MEVAL_GEQ"	value="0.07"	meas_name="delta_mnm5" />
+		<Constraint op="MEVAL_GEQ"	value="0.07"	meas_name="delta_mnm1" />
+		<Constraint op="MEVAL_GEQ"	value="0.07"	meas_name="delta_mpm4" />
+		<Constraint op="MEVAL_GEQ"	value="0.07"	meas_name="delta_mpm3" />
+		<Constraint op="MEVAL_GEQ"	value="0.07"	meas_name="delta_mpm6" />
+		<Constraint op="MEVAL_GEQ"	value="0.07"	meas_name="delta_mpm0" />
+		<Constraint op="MEVAL_GEQ"	value="0.07"	meas_name="delta_mpm5" />
+		<Constraint op="MEVAL_GEQ"	value="0.07"	meas_name="delta_mpm1" />
+
+		<Constraint op="MEVAL_LEQ"	value="0.0005"		meas_name="idd"		/>
+		<Constraint op="MEVAL_LEQ"	value="0.005"		meas_name="voff"	/>
+		<Constraint op="MEVAL_GEQ"	value="40"			meas_name="gdc"		/>
+		<Constraint op="MEVAL_GEQ"	value="10000000"	meas_name="gbw"		/>
+		<Constraint op="MEVAL_GEQ"	value="60"			meas_name="pm"		/>
+		<Constraint op="MEVAL_GEQ"	value="400"			meas_name="fom"		/>
+		<Constraint op="MEVAL_GEQ"  value="60"		    meas_name="psrr" />		
+		<Constraint op="MEVAL_GEQ" 	value="10"			meas_name="slewrate" />
+		<Constraint op="MEVAL_LEQ" 	value="0.00000005"	meas_name="trise" />
+		<Constraint op="MEVAL_LEQ" 	value="0.00000005"	meas_name="tfall" />	
+	
+</Design>

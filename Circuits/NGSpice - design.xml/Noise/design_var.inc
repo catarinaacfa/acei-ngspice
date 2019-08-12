@@ -1,4 +1,8 @@
 .PARAM
++vdd=1.2
++vcm=0.6
++c1=0.000000000006
+
 +_wpmbiasp=2u
 +_wp5=2u
 +_wp4=2u

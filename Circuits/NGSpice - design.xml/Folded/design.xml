@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Design SYSTEM "design-1.1.dtd">
+<Design name="Folded" author="RP">
+	<Description>Folded</Description>
+	<Circuit schematicImage="Folded.png" technologyNode="UMC_013">
+		<Variable name="_wp5" min="2e-6" step="1e-7" max="298e-6" />
+		<Variable name="_wp3" min="2e-6" step="1e-7" max="298e-6" />
+		<Variable name="_wp1" min="2e-6" step="1e-7" max="298e-6" />
+		<Variable name="_wp0" min="2e-6" step="1e-7" max="298e-6" />
+		<Variable name="_wn7" min="2e-6" step="1e-7" max="298e-6" />
+		<Variable name="_wn5" min="2e-6" step="1e-7" max="298e-6" />
+		<Variable name="_wn3" min="2e-6" step="1e-7" max="298e-6" />
+		<Variable name="_wn2" min="2e-6" step="1e-7" max="298e-6" />
+		<Variable name="_wn1" min="2e-6" step="1e-7" max="298e-6" />
+
+		<Variable name="_nfp5" min="1" step="2" max="16" />
+		<Variable name="_nfp3" min="1" step="2" max="16" />
+		<Variable name="_nfp1" min="1" step="2" max="16" />
+		<Variable name="_nfp0" min="1" step="2" max="16" />
+		<Variable name="_nfn7" min="1" step="2" max="16" />
+		<Variable name="_nfn5" min="1" step="2" max="16" />
+		<Variable name="_nfn3" min="1" step="2" max="16" />
+		<Variable name="_nfn2" min="1" step="2" max="16" />
+		<Variable name="_nfn1" min="1" step="2" max="16" />
+
+		<Variable name="_lp1" min="0.36e-6" step="0.1e-7" max="2.36e-6" />
+		<Variable name="_lp0" min="0.36e-6" step="0.1e-7" max="2.36e-6" />
+		<Variable name="_ln7" min="0.36e-6" step="0.1e-7" max="2.36e-6" />
+		<Variable name="_ln5" min="0.36e-6" step="0.1e-7" max="2.36e-6" />
+		<Variable name="_ln3" min="0.36e-6" step="0.1e-7" max="2.36e-6" />
+		<Variable name="_ln1" min="0.36e-6" step="0.1e-7" max="2.36e-6" />
+	</Circuit>
+
+	<TestbenchSetup simulator="acei" inputMethod="SINGLE">
+		<ImplicitWorstCaseCorners file="corners.inc"/>
+
+		<NominalTb netlist="Folded_AC.cir"  out="ACEI_OUT.dat"   exec="acei-multCorners.py Folded_AC.cir">
+			<Measure name="idd"	description="Current"							units="[A]" />
+			<Measure name="gdc"	description="Gain DC"							units="[dB]" />
+			<Measure name="gbw"	description="Unity Gain Frequency"				units="[Hz]" />
+			<Measure name="pm"	description="Phase Margin"						units="[degrees]" />
+			<Measure name="fom"	description="Figure of Merit"					units="[MHz * pF / mA]" />
+			<Measure name="PSRR" description="Power Supply Rejection Ratio"     units="[dB]" />
+			
+			<Measure name="outswing"	description="Output Swing" units="[V]" />
+			<Measure name="vov_mnm7"	description="Overdrive"	units="[V]" />
+			<Measure name="vov_mnm8"	description="Overdrive"	units="[V]" />
+			<Measure name="vov_mnm2"	description="Overdrive"	units="[V]" />
+			<Measure name="vov_mnm3"	description="Overdrive"	units="[V]" />
+			<Measure name="vov_mnm4"	description="Overdrive"	units="[V]" />
+			<Measure name="vov_mnm6"	description="Overdrive"	units="[V]" />
+			<Measure name="vov_mnm5"	description="Overdrive"	units="[V]" />
+			<Measure name="vov_mnm1"	description="Overdrive"	units="[V]" />
+			<Measure name="vov_mpm4"	description="Overdrive"	units="[V]" />
+			<Measure name="vov_mpm3"	description="Overdrive"	units="[V]" />
+			<Measure name="vov_mpm6"	description="Overdrive"	units="[V]" />
+			<Measure name="vov_mpm0"	description="Overdrive"	units="[V]" />
+			<Measure name="vov_mpm5"	description="Overdrive"	units="[V]" />
+			<Measure name="vov_mpm1"	description="Overdrive"	units="[V]" />
+
+			<Measure name="delta_mnm7"	description="VDS - VDSsat"	units="[V]" />
+			<Measure name="delta_mnm8"	description="VDS - VDSsat"	units="[V]" />
+			<Measure name="delta_mnm2"	description="VDS - VDSsat"	units="[V]" />
+			<Measure name="delta_mnm3"	description="VDS - VDSsat"	units="[V]" />
+			<Measure name="delta_mnm4"	description="VDS - VDSsat"	units="[V]" />
+			<Measure name="delta_mnm6"	description="VDS - VDSsat"	units="[V]" />
+			<Measure name="delta_mnm5"	description="VDS - VDSsat"	units="[V]" />
+			<Measure name="delta_mnm1"	description="VDS - VDSsat"	units="[V]" />
+			<Measure name="delta_mpm4"	description="VDS - VDSsat"	units="[V]" />
+			<Measure name="delta_mpm3"	description="VDS - VDSsat"	units="[V]" />
+			<Measure name="delta_mpm6"	description="VDS - VDSsat"	units="[V]" />
+			<Measure name="delta_mpm0"	description="VDS - VDSsat"	units="[V]" />
+			<Measure name="delta_mpm5"	description="VDS - VDSsat"	units="[V]" />
+			<Measure name="delta_mpm1"	description="VDS - VDSsat"	units="[V]" />
+		</NominalTb>
+
+		<NominalTb netlist="Folded_TRAN.cir"  out="ACEI_OUT.dat"   exec="acei-multCorners.py Folded_TRAN.cir">
+			<Measure name="sr"	description="Slew-Rate"                   		units="[V/us]" />
+		</NominalTb>
+	</TestbenchSetup>
+	
+	<Objective op="MAX" meas="fom" />
+	<Objective op="MAX" meas="gdc" />
+
+	<PerformanceSet name="performance" applyTo="All">
+		<Constraint op="MEVAL_LEQ"	value="0.0005"		meas="idd"		/>
+		<Constraint op="MEVAL_GEQ"	value="40"			meas="gdc"		/>
+		<Constraint op="MEVAL_GEQ"	value="10000000"	meas="gbw"		/>
+		<Constraint op="MEVAL_GEQ"	value="60"			meas="pm"		/>
+		<Constraint op="MEVAL_GEQ"	value="400"			meas="fom"		/>
+		<Constraint op="MEVAL_GEQ"  value="60"		    meas="psrr" />		
+		<Constraint op="MEVAL_GEQ"  value="1"		    meas="sr" />	
+	</PerformanceSet>
+	
+	<PerformanceSet name="funcional" applyTo="All">
+		<Constraint op="MEVAL_GEQ" value="0.1"
+			meas="vov_mnm7 vov_mnm8 vov_mnm2 vov_mnm3 vov_mnm4 vov_mnm6 vov_mnm5 vov_mnm1 vov_mpm4 vov_mpm3 vov_mpm6 vov_mpm0 vov_mpm5 vov_mpm1" />
+		<Constraint op="MEVAL_GEQ" value="0.07"
+			meas="delta_mnm7 delta_mnm8 delta_mnm2 delta_mnm3 delta_mnm4 delta_mnm6 delta_mnm5 delta_mnm1 delta_mpm4 delta_mpm3 delta_mpm6 delta_mpm0 delta_mpm5 delta_mpm1" />
+		<Constraint op="MEVAL_GEQ"	value="1.0"	meas="outswing" />
+	</PerformanceSet>
+
+	<Optimizer TypG="300" TypP="128" CnrG="200" CnrP="64" />
+								
+</Design>

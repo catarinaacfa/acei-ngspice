@@ -9,8 +9,6 @@ import shutil
 import time
 import queue
 
-#Output file name
-ACEI_OUT = 'ACEI_OUT.dat'
 MeasuresOutput = 'Measures'
 Extension = '.txt'
 
@@ -53,10 +51,10 @@ def writeValues(measures, outFile):
 		outFile.write(value + '\t')
 
 def getOutputFile(measures):
-	if len(sys.argv) == 3:
-		filename = sys.argv[2]
+	if sys.argv[1] == '--corners':
+		filename = sys.argv[3]
 	else:
-		filename = ACEI_OUT
+		filename = sys.argv[2]
 
 	try:
 		with open(filename, 'w') as outFile:
@@ -89,7 +87,7 @@ def removeDesignVarIncFiles():
 		os.remove(f)
 
 def removeNetlists():
-	for f in glob.glob(sys.argv[1].split('.')[0] + '_*'):
+	for f in glob.glob(sys.argv[2].split('.')[0] + '_*'):
 		os.remove(f)
 
 def buildNetlistsWithCorners(q):
@@ -113,7 +111,7 @@ def buildNetlistsWithCorners(q):
 							cornersDict[cornerName].append(line)
 
 		for corner, values in cornersDict.items():
-			netlistName = copyFile(sys.argv[1], corner)
+			netlistName = copyFile(sys.argv[2], corner)
 			paramsToChange = list()
 			cornersToChange = list()
 			for v in values:
@@ -129,7 +127,7 @@ def buildNetlistsWithCorners(q):
 					toReplace = param.split()[1]
 					pattern = toReplace.split('=')[0]
 					changeFile(newVariablesFileName, toReplace+'\n', pattern)
-				changeFile(netlistName, '.include ' + newVariablesFileName, VariablesFile)
+				changeFile(netlistName, '.include \'' + newVariablesFileName + '\'\n', VariablesFile)
 				
 			if cornersToChange:
 				for c in cornersToChange:
@@ -148,6 +146,7 @@ def copyFile(fileName, nameToAdd):
 	return newFile
 
 def changeFile(fileName, toReplace, pattern):
+	patternFound = False
 	try:
 		with open(fileName, 'r') as file:
 			for line in file:
@@ -185,12 +184,15 @@ def main():
 	#Get the number of cores available
 	numThreads = os.cpu_count()
 
-	removePreviousFiles()
-	
-	q.put((0, sys.argv[1], 'TT'))
+	#removePreviousFiles()
 
-	buildNetlistsWithCorners(q)
-	netlistsNr = q.qsize()
+	if(sys.argv[1] == '--corners'):
+		q.put((0, sys.argv[2], 'TT'))
+		buildNetlistsWithCorners(q)
+		netlistsNr = q.qsize()
+	else:
+		q.put((0, sys.argv[1], 'TT'))
+		netlistsNr = 1
 
 	#Dictionariy that will hold AC and OP measures of all corners
 	measures = [{} for n in range(netlistsNr)]
@@ -209,22 +211,16 @@ def main():
 		simObj = q.get()
 		simulation(simObj, measures)
 
-
-	#Not Parallel
-	"""for i in range(netlistsNr):
-		simObj = q.get()
-		simulation(simObj, measuresAC, measuresOP)"""
-
 	getOutputFile(measures)
 	removeOutputFiles()
-	removeNetlists()
-	removeDesignVarIncFiles()
+	#removeNetlists()
+	#removeDesignVarIncFiles()
 
 	print('Time: ', time.time() - start)
 
 if __name__ == '__main__':
 	if len(sys.argv) <= 1:
-		sys.exit("No netlist was given!")
+		sys.exit("The netlist and output file name have to be given as input!")
 	else:
 		main()
 

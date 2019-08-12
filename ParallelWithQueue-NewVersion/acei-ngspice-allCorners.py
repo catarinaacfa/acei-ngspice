@@ -202,15 +202,15 @@ def main():
 		simObj = q.get()
 		simulation(simObj, measuresAC, measuresOP)
 
-	"""getOutputFile2(measures)
+	getOutputFile(measures)
 	removeOutputFiles()
-	removeNetlists()"""
+	removeNetlists()
 
 	print('Time: ', time.time() - start)
 
 if __name__ == '__main__':
-	if len(sys.argv) <= 1:
-		sys.exit("No netlist was given!")
+	if len(sys.argv) <= 2:
+		sys.exit("The netlist and output file name have to be given as input!")
 	else:
 		main()
 
