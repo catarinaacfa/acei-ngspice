@@ -1,0 +1,33 @@
+******
+** ngspice-28 : Circuit level simulation program
+** The U. C. Berkeley CAD Group
+** Copyright 1985-1994, Regents of the University of California.
+** Please get your ngspice manual from http://ngspice.sourceforge.net/docs.html
+** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html
+** Creation Date: Mon Sep 17 17:14:21 WEST 2018
+******
+
+Circuit: ** generated for: eldo
+
+Warning: Model issue on line 2 :
+  .model n_hglv_33_l130e nmos level=8 version=3.2400e+00 binunit=2.0000e+0 ...
+unrecognized parameter (optacm) - ignored
+Warning: Model issue on line 8 :
+  .model p_hglv_33_l130e pmos level=8 version=3.2400e+00 binunit=2.0000e+0 ...
+unrecognized parameter (optacm) - ignored
+Doing analysis at TEMP = 25.000000 and TNOM = 27.000000
+
+Warning: Moin = 2.5 is too small.
+Warning: Moin = 2.5 is too small.
+Warning: Moin = 2.625 is too small.
+Warning: Acde = 0.38556 is too small.
+
+No. of Data Rows : 1801
+gdc                 =  3.802902e+01
+gbw                 =  3.414505e+06
+gps                 =  3.530840e+00
+psrr = 3.449818e+01
+sr = 4.903368e+00
+outswing = 1.155866e+00
+vov_mpm0 = 1.097748e+00
+delta_mpm0 = 6.619017e-01

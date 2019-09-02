@@ -1,0 +1,6 @@
+BSIM3 Model (Supports: v3.2, v3.2.2, v3.2.3, v3.2.4)
+Parameter Checking.
+Model = n_hglv_33_l130e
+W = 2e-06, L = 3.6e-07, M = 1
+Warning: Moin = 2.625 is too small.
+Warning:  Acde = 0.38556 is too small.

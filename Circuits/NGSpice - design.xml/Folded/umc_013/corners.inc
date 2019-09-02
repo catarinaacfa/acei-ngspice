@@ -1,14 +1,11 @@
-.ALTER SS
-.lib '/Users/Catarina/Desktop/Tese/Libraries/L130E_HGIO_LVT33_V131/L130E_HG_LVT33_V131.lib.eldo' SS
-
 .ALTER SNFP
-.lib '/Users/Catarina/Desktop/Tese/Libraries/L130E_HGIO_LVT33_V131/L130E_HG_LVT33_V131.lib.eldo' SNFP
+.lib '/home/caleixo/NGSpiceLibraries/L130E_HGIO_LVT33_V131/L130E_HG_LVT33_V131.lib.ngspice' SNFP
 
 .ALTER FNSP
-.lib '/Users/Catarina/Desktop/Tese/Libraries/L130E_HGIO_LVT33_V131/L130E_HG_LVT33_V131.lib.eldo' FNSP
+.lib '/home/caleixo/NGSpiceLibraries/L130E_HGIO_LVT33_V131/L130E_HG_LVT33_V131.lib.ngspice' FNSP
 
 .ALTER FF
-.lib '/Users/Catarina/Desktop/Tese/Libraries/L130E_HGIO_LVT33_V131/L130E_HG_LVT33_V131.lib.eldo' FF
+.lib '/home/caleixo/NGSpiceLibraries/L130E_HGIO_LVT33_V131/L130E_HG_LVT33_V131.lib.ngspice' FF
 
 .ALTER VMAX
 .PARAM

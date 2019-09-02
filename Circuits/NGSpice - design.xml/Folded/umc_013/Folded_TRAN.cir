@@ -7,7 +7,7 @@
 .OPTION TUNING=FAST
 .OPTION AEX
 
-.INC umc130.lib
+.INC "umc130.lib"
 
 .GLOBAL
 .include 'design_var.inc'
@@ -30,6 +30,12 @@ v5 vipp 0 DC=1.65
 v4 vinn 0 DC=1.65
 v3 vddd 0 DC=_vdd AC 1
 i2 vddd net16 DC=100u
+
+xi12 0 net17 vdddd vouttt vippp vouttt Folded
+c2 vouttt 0 10e-12
+v7 vippp 0 PULSE 1.15 2.15 1e-3 500e-12 500e-12 1e-3 2e-3
+v6 vdddd 0 DC=_vdd
+i3 vdddd net17 DC=100u
 *********************************************************
 
 *********** Analysis ***************************
@@ -38,30 +44,21 @@ i2 vddd net16 DC=100u
 ************************************************
 
 .control
-
 set units = degrees
 
-AC DEC 200 1 1G
+TRAN 0.000001 0.01 0
 
-let IDD = @v0[i]
-print IDD
+meas TRAN min_volt_new MIN V(vouttt) from=0.00699 to=0.00799
+meas TRAN max_volt_new MAX V(vouttt) from=0.00699 to=0.00799
 
-meas AC GDC FIND vdb(vout) at=1
-meas AC GBW WHEN vdb(vout)=0
-meas AC PM_Negative FIND vp(vout) WHEN vdb(vout)=0
-meas AC GPS FIND vdb(voutt) at=1
+let minV = min_volt_new+(100u)*min_volt_new
+let maxV = max_volt_new-(100u)*max_volt_new
 
-let FOM = ((GBW/1000000)*10)/(IDD*1000)
-print FOM
+meas TRAN trise_new TRIG V(vouttt) VAL=minV  TD=0 RISE=4 TARG V(vouttt) VAL=maxV TD=0 RISE=4
+meas TRAN tfall_new TRIG V(vouttt) VAL=maxV TD=0 FALL=4 TARG V(vouttt) VAL=minV TD=0 FALL=4
 
-let PM = PM_Negative + 180
-print PM
-
-let PSRR = GDC-GPS
-print PSRR
-
-let outswing = 1.65 - @m.xi10.mnm6[vdsat] - @m.xi10.mnm8[vdsat]
-print outswing 
+let sr = '(0.000001*(max_volt_new-min_volt_new)/(trise_new))'
+print sr
 
 let vov_mpm0 = @m.xi10.mpm0[vgs] - @m.xi10.mpm0[vth] 
 print vov_mpm0
@@ -148,7 +145,6 @@ let delta_mnm8 = @m.xi10.mnm8[vds] - @m.xi10.mnm8[vdsat]
 print delta_mnm8
 
 quit
-
 .endc
 
 .END

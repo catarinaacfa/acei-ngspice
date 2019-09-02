@@ -1,0 +1,78 @@
+** Generated for: Eldo
+** Generated on: Feb 27 10:58:28 2013
+** Design library name: JoaoMelo
+** Design cell name: Folded
+** Design view name: Schematic
+
+.OPTION TUNING=FAST
+.OPTION AEX
+
+.INC umc130.lib
+
+.GLOBAL
+.include 'design_var.inc'
+
+.include "ssvcamp.cir"
+
+*********************************************************
+** Library name: JoaoMelo
+** Cell name: Testbench
+** View name: Schematic
+xi10 0 net15 vddnet vin vip vout Folded
+c0 vout 0 10e-12
+v2 vin 0 DC=1.65	
+v1 vip 0 DC=1.65 AC 1
+v0 vddnet 0 DC=_vdd
+i1 vddnet net15 DC=100u
+
+xi11 0 net16 vddd vinn vipp voutt Folded
+c1 voutt 0 10e-12
+v5 vipp 0 DC=1.65
+v4 vinn 0 DC=1.65
+v3 vddd 0 DC=_vdd AC 1
+i2 vddd net16 DC=100u
+*********************************************************
+
+*********** Analysis ***************************
+.TEMP 0
+*.AC DEC 200 1 1G 
+.OPTION BRIEF=0
+************************************************
+
+
+.control
+
+set units = degrees
+
+AC DEC 200 1 1G
+
+meas AC GDC FIND vdb(vout) at=1
+meas AC GBW WHEN vdb(vout)=0
+*meas AC PM FIND vp(vout) WHEN vdb(vout)=0
+meas AC GPS FIND vdb(voutt) at=1
+
+let PSRR = GDC-GPS
+print PSRR
+
+let ids = @m.xi10.mpm6[id]
+*print ids
+
+let SR = (ids/10E-12)*1E-6
+print SR
+
+let outswing = 1.65 - @m.xi10.mnm6[vdsat] - @m.xi10.mnm8[vdsat]
+print outswing 
+
+let vov_mpm0 = @m.xi10.mpm0[vgs] - @m.xi10.mpm0[vth] 
+print vov_mpm0
+
+let delta_mpm0 = @m.xi10.mpm0[vds] - @m.xi10.mpm0[vdsat]
+print delta_mpm0
+
+quit
+
+
+.endc
+
+
+.END

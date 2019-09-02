@@ -209,7 +209,7 @@ def main():
 	print('Time: ', time.time() - start)
 
 if __name__ == '__main__':
-	if len(sys.argv) <= 2:
+	if len(sys.argv) <= 1:
 		sys.exit("The netlist and output file name have to be given as input!")
 	else:
 		main()

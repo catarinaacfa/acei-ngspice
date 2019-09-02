@@ -32,9 +32,18 @@
 	</Circuit>
 
 	<TestbenchSetup simulator="acei" inputMethod="SINGLE">
-		<ImplicitWorstCaseCorners file="corners.inc"/>
+		<!--ImplicitWorstCaseCorners file="corners.inc"/   not availabe for acei yet 
+               TODO: add option to create testCase only and a smart duplicate of testbenched -->
+		<TestCase name="SNFP"/>
+		<TestCase name="FNSP"/>
+		<TestCase name="FF"/>
 
-		<NominalTb netlist="Folded_AC.cir"  out="ACEI_OUT.dat"   exec="acei-multCorners.py Folded_AC.cir">
+		<TestCase name="VMAX"/>
+		<TestCase name="VMIN"/>
+		<TestCase name="TMAX"/>
+		<TestCase name="TMIN"/>
+
+		<NominalTb netlist="Folded_AC.cir"  out="ACEI_OUT_AC.dat"   exec="acei-ngspice-mult-corners.py Folded_AC.cir ACEI_OUT_AC.dat">
 			<Measure name="idd"	description="Current"							units="[A]" />
 			<Measure name="gdc"	description="Gain DC"							units="[dB]" />
 			<Measure name="gbw"	description="Unity Gain Frequency"				units="[Hz]" />
@@ -74,9 +83,56 @@
 			<Measure name="delta_mpm1"	description="VDS - VDSsat"	units="[V]" />
 		</NominalTb>
 
-		<NominalTb netlist="Folded_TRAN.cir"  out="ACEI_OUT.dat"   exec="acei-multCorners.py Folded_TRAN.cir">
+		<NominalTb netlist="Folded_TRAN.cir"  out="ACEI_OUT_TRAN.dat"   exec="acei-ngspice-mult-corners.py Folded_TRAN.cir ACEI_OUT_TRAN.dat">
 			<Measure name="sr"	description="Slew-Rate"                   		units="[V/us]" />
 		</NominalTb>
+
+		<WorstCaseTb netlist="Folded_AC.cir"  out="ACEI_OUT_AC_CNR.dat"   exec="acei-ngspice-mult-corners.py --corners Folded_AC.cir ACEI_OUT_AC_CNR.dat">
+			<Measure name="idd"	description="Current"							units="[A]" />
+			<Measure name="gdc"	description="Gain DC"							units="[dB]" />
+			<Measure name="gbw"	description="Unity Gain Frequency"				units="[Hz]" />
+			<Measure name="pm"	description="Phase Margin"						units="[degrees]" />
+			<Measure name="fom"	description="Figure of Merit"					units="[MHz * pF / mA]" />
+			<Measure name="PSRR" description="Power Supply Rejection Ratio"     units="[dB]" />
+			
+			<Measure name="outswing"	description="Output Swing" units="[V]" />
+			<Measure name="vov_mnm7"	description="Overdrive"	units="[V]" />
+			<Measure name="vov_mnm8"	description="Overdrive"	units="[V]" />
+			<Measure name="vov_mnm2"	description="Overdrive"	units="[V]" />
+			<Measure name="vov_mnm3"	description="Overdrive"	units="[V]" />
+			<Measure name="vov_mnm4"	description="Overdrive"	units="[V]" />
+			<Measure name="vov_mnm6"	description="Overdrive"	units="[V]" />
+			<Measure name="vov_mnm5"	description="Overdrive"	units="[V]" />
+			<Measure name="vov_mnm1"	description="Overdrive"	units="[V]" />
+			<Measure name="vov_mpm4"	description="Overdrive"	units="[V]" />
+			<Measure name="vov_mpm3"	description="Overdrive"	units="[V]" />
+			<Measure name="vov_mpm6"	description="Overdrive"	units="[V]" />
+			<Measure name="vov_mpm0"	description="Overdrive"	units="[V]" />
+			<Measure name="vov_mpm5"	description="Overdrive"	units="[V]" />
+			<Measure name="vov_mpm1"	description="Overdrive"	units="[V]" />
+
+			<Measure name="delta_mnm7"	description="VDS - VDSsat"	units="[V]" />
+			<Measure name="delta_mnm8"	description="VDS - VDSsat"	units="[V]" />
+			<Measure name="delta_mnm2"	description="VDS - VDSsat"	units="[V]" />
+			<Measure name="delta_mnm3"	description="VDS - VDSsat"	units="[V]" />
+			<Measure name="delta_mnm4"	description="VDS - VDSsat"	units="[V]" />
+			<Measure name="delta_mnm6"	description="VDS - VDSsat"	units="[V]" />
+			<Measure name="delta_mnm5"	description="VDS - VDSsat"	units="[V]" />
+			<Measure name="delta_mnm1"	description="VDS - VDSsat"	units="[V]" />
+			<Measure name="delta_mpm4"	description="VDS - VDSsat"	units="[V]" />
+			<Measure name="delta_mpm3"	description="VDS - VDSsat"	units="[V]" />
+			<Measure name="delta_mpm6"	description="VDS - VDSsat"	units="[V]" />
+			<Measure name="delta_mpm0"	description="VDS - VDSsat"	units="[V]" />
+			<Measure name="delta_mpm5"	description="VDS - VDSsat"	units="[V]" />
+			<Measure name="delta_mpm1"	description="VDS - VDSsat"	units="[V]" />
+		</WorstCaseTb>
+
+		<WorstCaseTb netlist="Folded_TRAN.cir"  out="ACEI_OUT_TRAN_CNR.dat"   exec="acei-ngspice-mult-corners.py --corners Folded_TRAN.cir ACEI_OUT_TRAN_CNR.dat">
+			<Measure name="sr"	description="Slew-Rate"                   		units="[V/us]" />
+		</WorstCaseTb>
+
+
+
 	</TestbenchSetup>
 	
 	<Objective op="MAX" meas="fom" />
