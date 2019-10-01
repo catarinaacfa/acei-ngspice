@@ -138,7 +138,7 @@ def buildNetlistsWithCorners(q):
 				for param in paramsToChange:
 					toReplace = param.split()[1]
 					pattern = toReplace.split('=')[0]
-					changeFile(newVariablesFileName, toReplace+'\n', pattern)
+					changeFile(newVariablesFileName, toReplace+'\n', pattern[1:])
 				changeFile(netlistName, '.include \'' + newVariablesFileName + '\'\n', VariablesFile)
 				
 			if cornersToChange:
