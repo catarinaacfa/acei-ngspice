@@ -5,14 +5,14 @@ warnings()
 args = commandArgs(trailingOnly=TRUE)
 
 fileNames<- list("Typical")
-for(i in 0:args[4]) {
+for(i in 0:args[5]) {
 	l<-append(l, paste("crn", toString(i), sep=""))
 }
 
 for (f in fileNames){
-	file1<-read.table(paste(args[1], f, ".txt", sep=""), header=TRUE)
-	file2<-read.table(paste(args[2], f, ".txt", sep=""), header=TRUE)
-	out<- args[3]
+	file1<-read.table(paste(args[2], f, ".txt", sep=""), header=TRUE)
+	file2<-read.table(paste(args[3], f, ".txt", sep=""), header=TRUE)
+	out<- args[4]
 
 	for (var in colnames(file1)){
 	    var1values<-file1[[var]]
